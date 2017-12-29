@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2017/12/29/My-first-article/</loc>
+    
+    <lastmod>2017-12-29T11:24:32.299Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/12/29/poj3468%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9%E5%8C%BA%E9%97%B4%E6%9F%A5%E8%AF%A2%E6%A8%A1%E6%9D%BF%E9%A2%98/</loc>
     
     <lastmod>2017-12-29T11:10:32.770Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://yoursite.com/tags/index.html</loc>
     
     <lastmod>2017-12-29T07:51:23.011Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2017/12/29/My-first-article/</loc>
-    
-    <lastmod>2017-12-29T06:31:58.112Z</lastmod>
     
   </url>
   
