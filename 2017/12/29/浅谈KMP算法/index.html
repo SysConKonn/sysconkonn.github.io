@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="模板,字符串匹配," />
 
 
 
@@ -79,13 +79,20 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Konnyaku Sys_Con">
-<meta property="og:url" content="http://yoursite.com/categories/数据结构/模板/index.html">
+<meta name="description" content="简单介绍明天要学Aho-Corasick(AC)自动机了,今天再复习一下KMP，可能有助于明天的听课吧。KMP算法，是在一个字符串(源串)s中匹配一个模式串t出现位置的算法。什么叫出现?就是s[j] = t[1], s[j+1] = t[2], …, s[j+n-1] = t[n]如果用朴素算法(小学生都知道)的话最坏时复杂度会达到O(m(n-1))而KMP算法只需O(m+n)在这里就不说多了，因">
+<meta name="keywords" content="模板,字符串匹配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈KMP算法">
+<meta property="og:url" content="http://yoursite.com/2017/12/29/浅谈KMP算法/index.html">
 <meta property="og:site_name" content="Konnyaku Sys_Con">
+<meta property="og:description" content="简单介绍明天要学Aho-Corasick(AC)自动机了,今天再复习一下KMP，可能有助于明天的听课吧。KMP算法，是在一个字符串(源串)s中匹配一个模式串t出现位置的算法。什么叫出现?就是s[j] = t[1], s[j+1] = t[2], …, s[j+n-1] = t[n]如果用朴素算法(小学生都知道)的话最坏时复杂度会达到O(m(n-1))而KMP算法只需O(m+n)在这里就不说多了，因">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/KMP.png">
+<meta property="og:updated_time" content="2017-12-29T12:10:26.876Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Konnyaku Sys_Con">
+<meta name="twitter:title" content="浅谈KMP算法">
+<meta name="twitter:description" content="简单介绍明天要学Aho-Corasick(AC)自动机了,今天再复习一下KMP，可能有助于明天的听课吧。KMP算法，是在一个字符串(源串)s中匹配一个模式串t出现位置的算法。什么叫出现?就是s[j] = t[1], s[j+1] = t[2], …, s[j+n-1] = t[n]如果用朴素算法(小学生都知道)的话最坏时复杂度会达到O(m(n-1))而KMP算法只需O(m+n)在这里就不说多了，因">
+<meta name="twitter:image" content="http://yoursite.com/images/KMP.png">
 
 
 
@@ -115,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/数据结构/模板/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/29/浅谈KMP算法/"/>
 
 
 
 
 
-  <title>分类: 模板 | Konnyaku Sys_Con</title>
+  <title>浅谈KMP算法 | Konnyaku Sys_Con</title>
   
 
 
@@ -140,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -278,83 +285,186 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>模板<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/浅谈KMP算法/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sys_Con">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Konnyaku Sys_Con">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/12/29/poj3468区间修改区间查询模板题/" itemprop="url">
-              
-                <span itemprop="name">poj3468区间修改区间查询模板题</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">浅谈KMP算法</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T15:48:51+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T19:47:59+08:00">
+                2017-12-29
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/模板/字符串/" itemprop="url" rel="index">
+                    <span itemprop="name">字符串</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/HDU1754I-Hate-It题解-线段树模板题/" itemprop="url">
-              
-                <span itemprop="name">HDU1754I Hate It题解-线段树模板题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T15:27:50+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>明天要学Aho-Corasick(AC)自动机了,今天再复习一下KMP，可能有助于明天的听课吧。<br>KMP算法，是在一个字符串(源串)s中匹配一个模式串t出现位置的算法。<br>什么叫出现?<br>就是s[j] = t[1], s[j+1] = t[2], …, s[j+n-1] = t[n]<br>如果用朴素算法(小学生都知道)的话最坏时复杂度会达到O(m(n-1))<br>而KMP算法只需O(m+n)<br>在这里就不说多了，因为毕竟只是当AC自动机的铺垫<br>下面这张图是KMP的精髓:<br><img src="/images/KMP.png" alt="KMP算法"></p>
+<a id="more"></a>
+<p>假定在匹配中，正在比较的文本串位置和模板串abbaaba最后一个字符不符合（失配），这是朴素算法会将模板串右移一位，继续比较，但是kmp不这样做，kmp认为既然’!!’位置已经比较过，应该可以利用模板串本身属性判断出右移一位不能匹配，同理，右移两位或者三位也不行，但是右移四位是有可能的。这个时候，需要比较 ‘*’处的字符和abbaaba的第三个字符。</p>
+<p>上图下面那个链状图就是一个状态机，其中编号为i的节点表示已经匹配了i个字符，匹配开始是0，如果成功匹配则+1，失配时‘沿着失配边走’，如果在状态6处失配，应转到状态2.为了方便，这里使用失配函数f[i]表示状态i失配时应转移到的新状态，要特别注意的是f[0]=0。</p>
+<h6 id="如果没有看懂可以看看下面这篇CSDN博客，感觉挺有帮助的-http-blog-csdn-net-to-be-better-article-details-49086075"><a href="#如果没有看懂可以看看下面这篇CSDN博客，感觉挺有帮助的-http-blog-csdn-net-to-be-better-article-details-49086075" class="headerlink" title="如果没有看懂可以看看下面这篇CSDN博客，感觉挺有帮助的: http://blog.csdn.net/to_be_better/article/details/49086075"></a>如果没有看懂可以看看下面这篇CSDN博客，感觉挺有帮助的: <a href="http://blog.csdn.net/to_be_better/article/details/49086075" target="_blank" rel="noopener">http://blog.csdn.net/to_be_better/article/details/49086075</a></h6><h3 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 1000000</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[MAX_N];</span><br><span class="line"><span class="keyword">int</span> maxl[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span> <span class="params">(<span class="keyword">int</span> tot)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; tot; ++i)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d "</span>, maxl[i]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">search</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  maxl[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">int</span> len_ = <span class="built_in">strlen</span>(s);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>, k = <span class="number">0</span>;i &lt; len_; ++i) &#123;</span><br><span class="line">    <span class="keyword">while</span>(k &gt; <span class="number">0</span> &amp;&amp; s[k] != s[i])</span><br><span class="line">      k = maxl[k - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">if</span>(s[k] == s[i])</span><br><span class="line">      k++;</span><br><span class="line">    maxl[i] = k;</span><br><span class="line">  &#125;</span><br><span class="line">  print(len_);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</span><br><span class="line">  search();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模板/" rel="tag"># 模板</a>
+          
+            <a href="/tags/字符串匹配/" rel="tag"># 字符串匹配</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/29/poj3468区间修改区间查询模板题/" rel="next" title="poj3468区间修改区间查询模板题">
+                <i class="fa fa-chevron-left"></i> poj3468区间修改区间查询模板题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -362,6 +472,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -382,8 +494,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -499,6 +620,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#如果没有看懂可以看看下面这篇CSDN博客，感觉挺有帮助的-http-blog-csdn-net-to-be-better-article-details-49086075"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">如果没有看懂可以看看下面这篇CSDN博客，感觉挺有帮助的: http://blog.csdn.net/to_be_better/article/details/49086075</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#程序"><span class="nav-number">1.1.</span> <span class="nav-text">程序</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -623,6 +760,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 

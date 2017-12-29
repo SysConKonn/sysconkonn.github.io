@@ -3,6 +3,58 @@
 
 
     
+  <url>
+    <loc>http://yoursite.com/2017/12/29/%E6%B5%85%E8%B0%88KMP%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2017-12-29T12:10:26.876Z</lastmod>
+    <data>
+        <display>
+        <title>浅谈KMP算法</title>
+        <pubTime>2017-12-29T11:47:59.000Z</pubTime>
+        
+        <tag>模板</tag>
+         
+        <tag>字符串匹配</tag>
+         
+         
+           
+             
+              <breadCrumb title="模板" url="http://yoursite.com/categories/%E6%A8%A1%E6%9D%BF/"/>
+          
+             
+              <breadCrumb title="字符串" url="http://yoursite.com/categories/%E6%A8%A1%E6%9D%BF/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2017/12/29/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%A8%A1%E6%9D%BF%E9%A2%98luogu3389%E9%A2%98%E8%A7%A3/</loc>
+    <lastmod>2017-12-29T11:52:54.097Z</lastmod>
+    <data>
+        <display>
+        <title>高斯消元模板题luogu3389题解</title>
+        <pubTime>2017-12-29T06:54:11.000Z</pubTime>
+        
+        <tag>模板</tag>
+         
+        <tag>洛谷</tag>
+         
+        <tag>高斯消元</tag>
+         
+         
+           
+             
+              <breadCrumb title="数学" url="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6/"/>
+          
+             
+              <breadCrumb title="模板" url="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6/%E6%A8%A1%E6%9D%BF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://yoursite.com/2017/12/29/My-first-article/</loc>
@@ -69,33 +121,6 @@
           
              
               <breadCrumb title="模板" url="http://yoursite.com/categories/%E5%9B%BE%E8%AE%BA/%E6%A8%A1%E6%9D%BF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2017/12/29/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%A8%A1%E6%9D%BF%E9%A2%98luogu3389%E9%A2%98%E8%A7%A3/</loc>
-    <lastmod>2017-12-29T10:55:13.880Z</lastmod>
-    <data>
-        <display>
-        <title>高斯消元模板题luogu3389题解</title>
-        <pubTime>2017-12-29T06:54:11.000Z</pubTime>
-        
-        <tag>模板</tag>
-         
-        <tag>洛谷</tag>
-         
-        <tag>高斯消元</tag>
-         
-         
-           
-             
-              <breadCrumb title="数学" url="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6/"/>
-          
-             
-              <breadCrumb title="模板" url="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6/%E6%A8%A1%E6%9D%BF/"/>
           
         </display>
     </data>
