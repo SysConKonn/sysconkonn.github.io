@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[poj3468区间修改区间查询模板题]]></title>
+    <url>%2F2017%2F12%2F29%2Fpoj3468%E5%8C%BA%E9%97%B4%E4%BF%AE%E6%94%B9%E5%8C%BA%E9%97%B4%E6%9F%A5%E8%AF%A2%E6%A8%A1%E6%9D%BF%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[题目A Simple Problem with IntegersTime Limit: 5000MS Memory Limit: 131072K Case Time Limit: 2000MSDescriptionYou have N integers, A1, A2, … , AN. You need to deal with two kinds of operations. One type of operation is to add some given number to each number in a given interval. The other is to ask for the sum of numbers in a given interval. InputThe first line contains two numbers N and Q. 1 ≤ N,Q ≤ 100000. The second line contains N numbers, the initial values of A1, A2, … , AN. -1000000000 ≤ Ai ≤ 1000000000. Each of the next Q lines represents an operation. “C a b c” means adding c to each of Aa, Aa+1, … , Ab. -10000 ≤ c ≤ 10000. “Q a b” means querying the sum of Aa, Aa+1, … , Ab. OutputYou need to answer all Q commands in order. One answer in a line. Sample Input10 51 2 3 4 5 6 7 8 9 10Q 4 4Q 1 10Q 2 4C 3 6 3Q 2 4 Sample Output455915 HintThe sums may exceed the range of 32-bit integers. 题解就是节约一点时间，不要访问的就懒得加下去了，弄一个tag数组，如果tag[i]不为0，就说明它的子树和以下所有节点都应该加上tag[i],重要的一点是你需要保证每一个所到达的节点都是正确的，所以你在访问到某个节点(它已经是正确的了)，你需要push_down，这样才可以保证其下面的两个直接子节点都是正确的。总的来说：就是保证三点: 到达的每个节点当前的值是正确的 每个节点的tag值都是它和底下所有节点都需要加上的 每访问某个节点都要push_down(把tag[]里的值加到子节点)使得子节点的值正确. 程序1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980#include #include #include #include #include #define MAX_N 1000010typedef long long ll;using namespace std;int N, Q;ll dat[MAX_N * 4], tag[MAX_N * 4], p[MAX_N];long long mk_tree(int l, int r, int now) &#123; if (l == r) return dat[now] = p[l]; return dat[now] = mk_tree(l, (l + r) / 2, now * 2) + mk_tree((l + r) / 2 + 1, r, now * 2 + 1);&#125;void push_down (int k, int l, int r, int val) &#123; int l1 = l, l2 = (l + r) / 2 + 1, r1 = (l + r) / 2, r2 = r; tag[k * 2] += val; tag[k * 2 + 1] += val; dat[k * 2] += 1LL * val * (r1 - l1 + 1); dat[k * 2 + 1] += 1LL * val * (r2 - l2 + 1); tag[k] = 0;&#125;void add(int a, int b, int x, int k, int l, int r) &#123; if (r &lt; a || b &lt; l) return; else if (a &lt;= l &amp;&amp; r &lt;= b) &#123; tag[k] += x; dat[k] += 1LL * x * (r - l + 1); push_down(k, l, r, tag[k]); return; &#125; else if (a &lt;= r &amp;&amp; l &lt;= b) &#123; //tag[k] += x; dat[k] += 1LL * (min(b, r) - max(a, l) + 1) * x; push_down(k, l, r, tag[k]); add(a, b, x, k * 2, l, (l + r) / 2); add(a, b, x, k * 2 + 1, (l + r) / 2 + 1, r); &#125;&#125;long long sum(int a, int b, int k, int l, int r) &#123; if (r &lt; a || b &lt; l) return 0; else if (a &lt;= l &amp;&amp; r &lt;= b) &#123; return dat[k]; &#125; else if (a &lt;= r &amp;&amp; l &lt;= b) &#123; push_down(k, l, r, tag[k]); return sum(a, b, k * 2, l, (l + r) / 2) + sum(a, b, k * 2 + 1, (l + r) / 2 + 1, r); &#125;&#125;int main () &#123; while (~scanf("%d%d", &amp;N, &amp;Q)) &#123; memset(dat, 0, sizeof(dat)); memset(tag, 0, sizeof(tag)); memset(p, 0, sizeof(p)); for (int i = 1;i &lt;= N; ++i) scanf("%lld", &amp;p[i]); dat[1] = mk_tree(1, N, 1); char s[6]; for (int i = 1;i &lt;= Q; ++i) &#123; getchar(); scanf("%s", s); if (s[0] == 'C') &#123; int l, r, d; scanf("%d%d%d", &amp;l, &amp;r, &amp;d); add(l, r, d, 1, 1, N); &#125; else if (s[0] == 'Q') &#123; int l, r; scanf("%d%d", &amp;l, &amp;r); printf("%lld\n", sum(l, r, 1, 1, N)); &#125; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>模板</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+        <tag>模板</tag>
+        <tag>POJ</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU1754I Hate It题解-线段树模板题]]></title>
+    <url>%2F2017%2F12%2F29%2FHDU1754I-Hate-It%E9%A2%98%E8%A7%A3-%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%A8%A1%E6%9D%BF%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[十分简单的单点修改区间+查询最大值。 线段树原理就不解释了，反正都知道。贴一个图助于理解好了。 因为太简单所以直接上代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879#include #include #include #include #define MAX_N 300010#define MAX_Q 1000040#define INF 2147483647using namespace std;int N, Q;long long ST_Max[MAX_N * 4 + 1];long long H[MAX_N];int top = 0;int pos[MAX_N], max_;long long _max(long long a, long long b) &#123; return a &lt; b ? b : a;&#125;int AT_Max(int l, int r, int now) &#123; max_ = _max(max_, now); if(l == r) &#123;pos[l] = now;return ST_Max[now] = H[l];&#125; return ST_Max[now] = _max(AT_Max(l, (l + r) / 2, now * 2), AT_Max((l + r) / 2 + 1, r, now * 2 + 1));&#125;long long find_Max(int l, int r, int lsum, int rsum, int now) &#123; if(l &gt; rsum || r &lt; lsum) return -INF; if(l &gt;= lsum &amp;&amp; r &lt;= rsum) return ST_Max[now]; return _max(find_Max(l, (l + r) / 2, lsum, rsum, now * 2), find_Max((l + r) / 2 + 1, r, lsum, rsum, now * 2 + 1));&#125;void cag (int x, int a) &#123; x = pos[x]; ST_Max[x] = a; while (x &gt; 0) &#123; //printf("%d\n", x); x = (x ^ 1) / 2; ST_Max[x] = _max(ST_Max[x * 2], ST_Max[x * 2 + 1]); &#125;&#125;void find_() &#123; int l, r; scanf("%d%d", &amp;l, &amp;r); long long res = find_Max(1, N, l, r, 1); printf("%lld\n", res);&#125;void change() &#123; int x, a; scanf("%d%d", &amp;x, &amp;a); cag(x, a);&#125;void print() &#123; int sum = 1; for (int i = 1;sum &lt;= max_; ++i) &#123; for (int j = 1;j &lt;= pow(2, i - 1); ++j) printf("%lld ", ST_Max[sum++]); printf("\n"); &#125;&#125;int main() &#123; while(scanf("%d%d", &amp;N, &amp;Q) == 2) &#123; memset(H, 0, sizeof(H)); memset(ST_Max, 0, sizeof(ST_Max)); memset(pos, 0, sizeof(pos)); for(int i = 1;i &lt;= N; i++) scanf("%lld", &amp;H[i]); ST_Max[1] = AT_Max(1, N, 1); for (int i = 1;i &lt;= Q; ++i) &#123; char c[20]; scanf("%s", c); //print(); if (c[0] == 'Q') find_(); else change(); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+        <category>模板</category>
+      </categories>
+      <tags>
+        <tag>线段树</tag>
+        <tag>HDU</tag>
+        <tag>模板</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[luogu3376最大流模板题]]></title>
+    <url>%2F2017%2F12%2F29%2Fluogu3376%E6%9C%80%E5%A4%A7%E6%B5%81%E6%A8%A1%E6%9D%BF%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[不解释，直接上代码(这一份写的不好，不正规，并不想多加解释了)123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119#include &lt;cstdio&gt;#include &lt;cstring&gt;#include &lt;algorithm&gt;#include &lt;vector&gt;#include &lt;queue&gt;#define MAX_N 10001#define INF 2147483647using namespace std;struct Edge &#123; int to, cap; Edge(int v, int d):to(v), cap(d) &#123;&#125;&#125;;vector &lt;Edge&gt; edges[MAX_N];int N, M;int s, t;int dep[MAX_N], idep[MAX_N];void bfs (int s) &#123; memset(dep, -1, sizeof(dep)); memset(idep, 0, sizeof(idep)); queue&lt;int&gt; Q; while (!Q.empty()) Q.pop(); dep[s] = 0; idep[0]++; Q.push(s); while (!Q.empty()) &#123; int now = Q.front(); Q.pop(); for (int i = 0;i &lt; edges[now].size(); ++i) &#123; Edge&amp; e = edges[now][i]; if(e.cap &gt; 0 &amp;&amp; dep[e.to] &lt; 0) &#123; dep[e.to] = dep[now] + 1; idep[dep[e.to]]++; Q.push(e.to); &#125; &#125; &#125;&#125;int find_ (int x, int u) &#123; for (int i = 0;i &lt; edges[u].size(); ++i) if(edges[u][i].to == x) return i;&#125;int dfs (int now, int flow) &#123; //printf("OK"); if(now == t) return flow; for(int i = 0;i &lt; edges[now].size(); ++i) &#123; Edge&amp; e = edges[now][i]; if((dep[e.to] == dep[now] + 1) &amp;&amp; (e.cap &gt; 0)) &#123; int f = dfs(e.to, min(flow, e.cap)); if(f &gt; 0) &#123; e.cap -= f; edges[e.to][find_(now, e.to)].cap += f; return f; &#125; &#125; &#125; return 0;&#125;void print (int out) &#123; printf("%d\n", out); exit(0);&#125;void add_ (int u, int v, int cap) &#123; edges[u].push_back(Edge(v, cap)); edges[v].push_back(Edge(u, 0));&#125;void db (int);int check () &#123; bool book = false; int sum = 0; for (int i = 0;sum &lt; N &amp;&amp; i &lt; N; ++i) &#123; if(idep[i] == 0) book = true; sum += idep[i]; &#125; if (book == true) return 1; return 0;&#125;int main () &#123; scanf("%d%d", &amp;N, &amp;M); scanf("%d%d", &amp;s, &amp;t); for(int i = 1;i &lt;= M; ++i) &#123; int u, v, cap; scanf("%d%d%d", &amp;u, &amp;v, &amp;cap); add_(u, v, cap); &#125; int res = 0; int d = 0; for (;;) &#123; bfs(s); if(dep[t] &lt; 0) print(res); while(d = dfs(s, INF)) res += d; &#125; print(res); return 0;&#125;void db (int res) &#123; printf("%d\n", res); for(int i = 1;i &lt;= N; ++i) printf("%d ", dep[i]); printf("\n"); for(int i = 0;i &lt; N; ++i) printf("%d ", idep[i]); printf("\n"); int sum = 0; for(int i = 0;sum &lt; N &amp;&amp; i &lt; N; ++i) &#123; sum += idep[i]; printf("%d %d\n", i, sum); &#125;&#125;]]></content>
+      <categories>
+        <category>图论</category>
+        <category>模板</category>
+      </categories>
+      <tags>
+        <tag>模板</tag>
+        <tag>网络流</tag>
+        <tag>洛谷</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[poj1830题解-开关问题]]></title>
+    <url>%2F2017%2F12%2F29%2Fpoj1830%E9%A2%98%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[开关问题Time Limit: 1000MS Memory Limit: 30000K Description有N个相同的开关，每个开关都与某些开关有着联系，每当你打开或者关闭某个开关的时候，其他的与此开关相关联的开关也会相应地发生变化，即这些相联系的开关的状态如果原来为开就变为关，如果为关就变为开。你的目标是经过若干次开关操作后使得最后N个开关达到一个特定的状态。对于任意一个开关，最多只能进行一次开关操作。你的任务是，计算有多少种可以达到指定状态的方法。（不计开关操作的顺序） Input输入第一行有一个数K，表示以下有K组测试数据。 每组测试数据的格式如下： 第一行 一个数N（0 &lt; N &lt; 29） 第二行 N个0或者1的数，表示开始时N个开关状态。 第三行 N个0或者1的数，表示操作结束后N个开关的状态。 接下来 每行两个数I J，表示如果操作第 I 个开关，第J个开关的状态也会变化。每组数据以 0 0 结束。 Output如果有可行方法，输出总数，否则输出“Oh,it’s impossible~!!” 不包括引号 Sample Input230 0 01 1 11 21 32 12 33 13 20 030 0 01 0 11 22 10 0 Sample Output4Oh,it’s impossible~!!Hint 第一组数据的说明：一共以下四种方法： 操作开关1 操作开关2 操作开关3 操作开关1、2、3 （不记顺序） 题解这题其实挺水的，但是可能由于是晚上想的而且没有特别开动脑筋吧，结果做完之后WA了7还是8次， 当时每次提交我的心都在滴血，最后调试了1个多小时后，终于发现是求开头要替换的那个求错了， (说不清楚，反正也不重要了)，果然要打代码打标准啊。 怎么做呢? 就是一个简单的高斯消元，首先对于每个灯肯定只有开着或关着，按了或者没按，并且结果(也就是最后灯是开着还是关着)是每次可影响它的灯按了之后加上自己的影响的结果， 观察一下可以发现，如果每个灯按了记作1，不然记作0，每个灯受的影响异或起来就是结果。 举个例子: 设一个灯受了3个灯的影响 ，则因为1^1^1=1，它的结果是1，也就是亮着. 因为有N个灯，就造一个N*N的方阵A，第i行第j个位置表示灯j对灯i有没有影响(有就是1，否则0) 再造一个N的数组存结果，开了就是1，否则0. 最后高斯消元，就是把消系数改成若两个系数不同就把第二排和第一排异或一下。 最后记录自由元的个数(设为x)方案数就是2^x. 若某一行系数全是0结果却是1，那这是不可能的。 怎么求自由元？若A[i][i] = 0则第i个灯是自由元。 程序123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;cstring&gt;#define MAX_N 30using namespace std;int fr[MAX_N], be[MAX_N];int A[MAX_N][MAX_N], B[MAX_N];int free_x[MAX_N];int N;int check_ () &#123; for(int i = 1;i &lt;= N; ++i) &#123; int sum = 0; for(int j = 1;j &lt;= N; ++j) if(A[i][j] == 0) sum++; if(sum == N &amp;&amp; B[i] == 1) return 1; &#125; return 0;&#125;void print_false () &#123; printf("Oh,it's impossible~!!\n");&#125;void cal () &#123; int res = 1; for(int i = 1;i &lt;= N; ++i) if(free_x[i]) res *= 2; printf("%d\n", res);&#125;void gauss () &#123; memset(free_x, 0, sizeof(free_x)); for(int i = 1;i &lt;= N; ++i) &#123; int k = i; for (int j = i+1; j &lt;= N; ++j) if (A[j][i] &gt; A[k][i]) k = j; if(A[k][i] == 0) free_x[i] = 1; if (k != i)&#123; for (int j = 1; j &lt;= N; ++j) std::swap(A[i][j], A[k][j]); std::swap(B[i], B[k]); &#125; for(int j = i + 1;j &lt;= N; ++j) &#123; if(A[j][i] == 0) continue; for(int k = 1;k &lt;= N; ++k) A[j][k] ^= A[i][k]; B[j] ^= B[i]; &#125; &#125; if(check_() == 1) print_false(); else cal();&#125;void solve () &#123; //Read() scanf("%d", &amp;N); for(int i = 1;i &lt;= N; ++i) scanf("%d", &amp;fr[i]); for(int i = 1;i &lt;= N; ++i) &#123; scanf("%d", &amp;be[i]); B[i] = fr[i] ^ be[i]; &#125; int a, b; for(int i = 1;i &lt;= N; ++i) A[i][i] = 1; while(scanf("%d%d", &amp;a, &amp;b) == 2 &amp;&amp; a != 0 &amp;&amp; b != 0) A[b][a] = 1; gauss();&#125;void init () &#123; memset(fr, 0, sizeof(fr)); memset(be, 0, sizeof(be)); memset(A, 0, sizeof(A)); memset(B, 0, sizeof(B));&#125;int main () &#123; int ntot; scanf("%d", &amp;ntot); while(ntot--) &#123; init(); solve(); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>POJ</tag>
+        <tag>高斯消元</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[高斯消元模板题luogu3389题解]]></title>
+    <url>%2F2017%2F12%2F29%2F%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%A8%A1%E6%9D%BF%E9%A2%98luogu3389%E9%A2%98%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[题目背景Gauss消元 题目描述给定一个线性方程组，对其求解 输入输出格式输入格式：第一行，一个正整数 nnn 第二至 n+1行，每行 n+1 个整数，为a_1, a_2 \cdots a_n和 b，代表一组方程。 输出格式：共n行，每行一个数，第 i行为x_i （保留2位小数） 如果不存在唯一解，在第一行输出”No Solution”. 输入输出样例输入样例#1： 31 3 4 51 4 7 39 3 2 2输出样例#1： -0.975.18-2.39 说明 1≤n≤100,∣ai∣≤104,∣b∣≤104 解题报告 这就是个高斯消元的模板题，一开始还认为很难，又找wikipedia,又找百度百科. 虽然最后没有什么用，但是还是把链接贴上: wiki : https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E6%B6%88%E5%8E%BB%E6%B3%95 baidu : https://baike.baidu.com/item/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95/619561?fr=aladdin 一开始看完wiki上面的高斯消元大概知道只有唯一解的方法怎么写了，但是唯一一个问题就是 怎么判断无解或者有多个解。 所以就因为这个问题看wiki和百科看了一个多小时，最后还是不懂(不禁吐槽wiki后面写的晦涩难懂) 后来问了dra, 他就说这题很简单，你直接用平常你解方程的方法去判断 我一想，好像就是这样就可以了。 然后怎么会无解呢:已知最后会化简成a * x = b的形式，如果此时系数a为0就不行。 怎么会又无穷多个解呢: 就是存在自由元啊，如果matr[i][i]==0说明x[i]是个自由元. 所以这题就做出来了. 代码12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;#include &lt;iostream&gt;#define MAX_N 1005using namespace std;// problemint N;double matr[MAX_N][MAX_N];// recorddouble free_line[MAX_N];void cal () &#123; matr[N][N + 1] /= matr[N][N]; for(int i = N - 1;i &gt; 0; --i) &#123; // 处理每一行 double sum = 0; for(int j = i + 1; j &lt;= N; ++j) &#123; sum += matr[i][j] * matr[j][N + 1]; //printf("%lf %lf %lf\n", matr[i][j], matr[j][N + 1], sum); &#125; matr[i][N + 1] = (matr[i][N + 1] - sum) / matr[i][i]; &#125; for(int i = 1;i &lt;= N; ++i) printf("%.2lf\n", matr[i][N + 1]);&#125;void solve () &#123; for(int tot = 1;tot &lt; N; ++tot) &#123; double stan = matr[tot][tot]; for(int i = tot + 1;i &lt;= N; ++i) &#123; //把tot列的元都消掉 if(matr[i][tot] == 0) continue; double now = matr[i][tot] / stan; for(int j = 1;j &lt;= N + 1; ++j) &#123; matr[i][j] -= matr[tot][j] * now; &#125; &#125; &#125; if(matr[N][N] == 0) &#123;printf("No Solution\n");exit(0);&#125; else cal();&#125;int main () &#123; scanf("%d", &amp;N); for(int i = 1;i &lt;= N; ++i) for(int j = 1;j &lt;= N + 1; ++j) &#123; scanf("%lf", &amp;matr[i][j]); if(matr[i][j] == 0) free_line[j]++; &#125; // special situation for(int i = 1;i &lt;= N; ++i) if(free_line[i] == N) &#123; printf("No Solution\n"); return 0; &#125; solve(); return 0;&#125;]]></content>
+      <categories>
+        <category>数学</category>
+        <category>模板</category>
+      </categories>
+      <tags>
+        <tag>模板</tag>
+        <tag>洛谷</tag>
+        <tag>高斯消元</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[My first article]]></title>
+    <url>%2F2017%2F12%2F29%2FMy-first-article%2F</url>
+    <content type="text"><![CDATA[一年中最后几天才开始动手搭建这个blog真是有意思啊再见 2017!你好 2018!]]></content>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+</search>
