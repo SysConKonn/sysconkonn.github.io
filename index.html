@@ -248,6 +248,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/poj3468区间修改区间查询模板题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sys_Con">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Konnyaku Sys_Con">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/12/29/poj3468区间修改区间查询模板题/" itemprop="url">poj3468区间修改区间查询模板题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-29T15:48:51+08:00">
+                2017-12-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">in</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h2 id="A-Simple-Problem-with-Integers"><a href="#A-Simple-Problem-with-Integers" class="headerlink" title="A Simple Problem with Integers"></a><p align="center">A Simple Problem with Integers</p></h2><h6 id="Time-Limit-5000MS-Memory-Limit-131072K-Case-Time-Limit-2000MS"><a href="#Time-Limit-5000MS-Memory-Limit-131072K-Case-Time-Limit-2000MS" class="headerlink" title="Time Limit: 5000MS   Memory Limit: 131072K  Case Time Limit: 2000MS"></a><p align="center">Time Limit: 5000MS   Memory Limit: 131072K  Case Time Limit: 2000MS</p></h6><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>You have N integers, A1, A2, … , AN. You need to deal with two kinds of operations. One type of operation is to add some given number to each number in a given interval. The other is to ask for the sum of numbers in a given interval.</p>
+<h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>The first line contains two numbers N and Q. 1 ≤ N,Q ≤ 100000.</p>
+<p>The second line contains N numbers, the initial values of A1, A2, … , AN. -1000000000 ≤ Ai ≤ 1000000000.</p>
+<p>Each of the next Q lines represents an operation.</p>
+<p>“C a b c” means adding c to each of Aa, Aa+1, … , Ab. -10000 ≤ c ≤ 10000.</p>
+<p>“Q a b” means querying the sum of Aa, Aa+1, … , Ab.</p>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><p>You need to answer all Q commands in order. One answer in a line.</p>
+<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input"></a>Sample Input</h3><p>10 5<br>1 2 3 4 5 6 7 8 9 10<br>Q 4 4<br>Q 1 10<br>Q 2 4<br>C 3 6 3<br>Q 2 4</p>
+<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output"></a>Sample Output</h3><p>4<br>55<br>9<br>15</p>
+<h3 id="Hint"><a href="#Hint" class="headerlink" title="Hint"></a>Hint</h3><p>The sums may exceed the range of 32-bit integers.</p>
+<h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>就是节约一点时间，<strong>不要访问的就懒得加下去了</strong>，弄一个tag数组，如果tag[i]不为0，就说明<strong>它的子树和以下所有节点都应该加上tag[i]</strong>,重要的一点是你需要<strong>保证每一个所到达的节点都是正确的</strong>，所以你在访问到某个节点(它已经是正确的了)，你需要push_down，这样才可以保证其下面的两个直接子节点都是正确的。<br><strong><em>总的来说：就是保证三点:</em></strong></p>
+<ul>
+<li>到达的每个节点当前的值是正确的</li>
+<li>每个节点的tag值都是它和底下所有节点都需要加上的</li>
+<li>每访问某个节点都要push_down(把tag[]里的值加到子节点)使得子节点的值正确. </li>
+</ul>
+<h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 1000010</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> N, Q;</span><br><span class="line">ll dat[MAX_N * <span class="number">4</span>], tag[MAX_N * <span class="number">4</span>], p[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">mk_tree</span><span class="params">(<span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> now)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (l == r) <span class="keyword">return</span> dat[now] = p[l];</span><br><span class="line"> <span class="keyword">return</span> dat[now] = mk_tree(l, (l + r) / <span class="number">2</span>, now * <span class="number">2</span>) + mk_tree((l + r) / <span class="number">2</span> + <span class="number">1</span>, r, now * <span class="number">2</span> + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push_down</span> <span class="params">(<span class="keyword">int</span> k, <span class="keyword">int</span> l, <span class="keyword">int</span> r, <span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">int</span> l1 = l, l2 = (l + r) / <span class="number">2</span> + <span class="number">1</span>, r1 = (l + r) / <span class="number">2</span>, r2 = r;</span><br><span class="line"> tag[k * <span class="number">2</span>] += val;</span><br><span class="line"> tag[k * <span class="number">2</span> + <span class="number">1</span>] += val;</span><br><span class="line"> dat[k * <span class="number">2</span>] += <span class="number">1L</span>L * val * (r1 - l1 + <span class="number">1</span>);</span><br><span class="line"> dat[k * <span class="number">2</span> + <span class="number">1</span>] += <span class="number">1L</span>L * val * (r2 - l2 + <span class="number">1</span>);</span><br><span class="line"> tag[k] = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> x, <span class="keyword">int</span> k, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (r &lt; a || b &lt; l) <span class="keyword">return</span>;</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (a &lt;= l &amp;&amp; r &lt;= b) &#123;</span><br><span class="line">  tag[k] += x;</span><br><span class="line">  dat[k] += <span class="number">1L</span>L * x * (r - l + <span class="number">1</span>);</span><br><span class="line">  push_down(k, l, r, tag[k]);</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (a &lt;= r &amp;&amp; l &lt;= b) &#123;</span><br><span class="line">  <span class="comment">//tag[k] += x;</span></span><br><span class="line">  dat[k] += <span class="number">1L</span>L * (min(b, r) - max(a, l) + <span class="number">1</span>) * x;</span><br><span class="line">  push_down(k, l, r, tag[k]);</span><br><span class="line">  add(a, b, x, k * <span class="number">2</span>, l, (l + r) / <span class="number">2</span>);</span><br><span class="line">  add(a, b, x, k * <span class="number">2</span> + <span class="number">1</span>, (l + r) / <span class="number">2</span> + <span class="number">1</span>, r);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> k, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (r &lt; a || b &lt; l) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (a &lt;= l &amp;&amp; r &lt;= b) &#123;</span><br><span class="line">  <span class="keyword">return</span> dat[k];</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">else</span> <span class="keyword">if</span> (a &lt;= r &amp;&amp; l &lt;= b) &#123;</span><br><span class="line">  push_down(k, l, r, tag[k]);</span><br><span class="line">  <span class="keyword">return</span> sum(a, b, k * <span class="number">2</span>, l, (l + r) / <span class="number">2</span>) + sum(a, b, k * <span class="number">2</span> + <span class="number">1</span>, (l + r) / <span class="number">2</span> + <span class="number">1</span>, r);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"> <span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;N, &amp;Q)) &#123;</span><br><span class="line">  <span class="built_in">memset</span>(dat, <span class="number">0</span>, <span class="keyword">sizeof</span>(dat));</span><br><span class="line">  <span class="built_in">memset</span>(tag, <span class="number">0</span>, <span class="keyword">sizeof</span>(tag));</span><br><span class="line">  <span class="built_in">memset</span>(p, <span class="number">0</span>, <span class="keyword">sizeof</span>(p));</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i) <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;p[i]);</span><br><span class="line">  dat[<span class="number">1</span>] = mk_tree(<span class="number">1</span>, N, <span class="number">1</span>);</span><br><span class="line">    </span><br><span class="line">  <span class="keyword">char</span> s[<span class="number">6</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= Q; ++i) &#123;</span><br><span class="line">   getchar();</span><br><span class="line">   <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</span><br><span class="line">   <span class="keyword">if</span> (s[<span class="number">0</span>] == <span class="string">'C'</span>) &#123;</span><br><span class="line">    <span class="keyword">int</span> l, r, d;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;l, &amp;r, &amp;d);</span><br><span class="line">    add(l, r, d, <span class="number">1</span>, <span class="number">1</span>, N);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">else</span> <span class="keyword">if</span> (s[<span class="number">0</span>] == <span class="string">'Q'</span>) &#123;</span><br><span class="line">    <span class="keyword">int</span> l, r;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;l, &amp;r);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, sum(l, r, <span class="number">1</span>, <span class="number">1</span>, N));</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/HDU1754I-Hate-It题解-线段树模板题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1026,7 +1184,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">Artikel</span>
                 </a>
               </div>
@@ -1036,10 +1194,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
+                <a href="/categories/index.html">
                   <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">Kategorien</span>
-                
+                </a>
               </div>
             
 
@@ -1047,10 +1205,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
+                <a href="/tags/index.html">
                   <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">Tags</span>
-                
+                </a>
               </div>
             
 
