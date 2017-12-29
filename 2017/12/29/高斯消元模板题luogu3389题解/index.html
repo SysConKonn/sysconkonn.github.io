@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="高斯消元,洛谷," />
 
 
 
@@ -79,12 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Konnyaku Sys_Con">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="题目背景Gauss消元 题目描述给定一个线性方程组，对其求解 输入输出格式输入格式：第一行，一个正整数 nnn 第二至 n+1行，每行 n+1 个整数，为a_1, a_2 \cdots a_n和 b，代表一组方程。 输出格式：共n行，每行一个数，第 i行为x_i （保留2位小数） 如果不存在唯一解，在第一行输出”No Solution”. 输入输出样例输入样例#1： 31 3 4 51 4 7 3">
+<meta name="keywords" content="高斯消元,洛谷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高斯消元模板题luogu3389题解">
+<meta property="og:url" content="http://yoursite.com/2017/12/29/高斯消元模板题luogu3389题解/index.html">
 <meta property="og:site_name" content="Konnyaku Sys_Con">
+<meta property="og:description" content="题目背景Gauss消元 题目描述给定一个线性方程组，对其求解 输入输出格式输入格式：第一行，一个正整数 nnn 第二至 n+1行，每行 n+1 个整数，为a_1, a_2 \cdots a_n和 b，代表一组方程。 输出格式：共n行，每行一个数，第 i行为x_i （保留2位小数） 如果不存在唯一解，在第一行输出”No Solution”. 输入输出样例输入样例#1： 31 3 4 51 4 7 3">
+<meta property="og:updated_time" content="2017-12-29T07:06:41.754Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Konnyaku Sys_Con">
+<meta name="twitter:title" content="高斯消元模板题luogu3389题解">
+<meta name="twitter:description" content="题目背景Gauss消元 题目描述给定一个线性方程组，对其求解 输入输出格式输入格式：第一行，一个正整数 nnn 第二至 n+1行，每行 n+1 个整数，为a_1, a_2 \cdots a_n和 b，代表一组方程。 输出格式：共n行，每行一个数，第 i行为x_i （保留2位小数） 如果不存在唯一解，在第一行输出”No Solution”. 输入输出样例输入样例#1： 31 3 4 51 4 7 3">
 
 
 
@@ -114,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/29/高斯消元模板题luogu3389题解/"/>
 
 
 
 
 
-  <title>Konnyaku Sys_Con</title>
+  <title>高斯消元模板题luogu3389题解 | Konnyaku Sys_Con</title>
   
 
 
@@ -139,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -213,9 +217,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -245,9 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/29/高斯消元模板题luogu3389题解/" itemprop="url">高斯消元模板题luogu3389题解</a></h1>
+          <h1 class="post-title" itemprop="name headline">高斯消元模板题luogu3389题解</h1>
         
 
         <div class="post-meta">
@@ -319,9 +321,7 @@
       
 
       
-        
-          
-            <h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p><strong>Gauss消元</strong></p>
+        <h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p><strong>Gauss消元</strong></p>
 <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个线性方程组，对其求解</p>
 <h3 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h3><h4 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h4><p>第一行，一个正整数 nnn</p>
 <p>第二至 n+1行，每行 n+1 个整数，为a_1, a_2 \cdots a_n和 b，代表一组方程。</p>
@@ -347,8 +347,6 @@
 <p>所以这题就做出来了.</p>
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 1005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// problem</span></span><br><span class="line"><span class="keyword">int</span> N;</span><br><span class="line"><span class="keyword">double</span> matr[MAX_N][MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="comment">// record</span></span><br><span class="line"><span class="keyword">double</span> free_line[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cal</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  matr[N][N + <span class="number">1</span>] /= matr[N][N];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>;i &gt; <span class="number">0</span>; --i) &#123;  <span class="comment">// 处理每一行</span></span><br><span class="line">    <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= N; ++j) &#123;</span><br><span class="line">      sum += matr[i][j] * matr[j][N + <span class="number">1</span>];</span><br><span class="line">      <span class="comment">//printf("%lf  %lf  %lf\n", matr[i][j], matr[j][N + 1], sum);</span></span><br><span class="line">    &#125;</span><br><span class="line">    matr[i][N + <span class="number">1</span>] = (matr[i][N + <span class="number">1</span>] - sum) / matr[i][i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.2lf\n"</span>, matr[i][N + <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> tot = <span class="number">1</span>;tot &lt; N; ++tot) &#123;</span><br><span class="line">    <span class="keyword">double</span> stan = matr[tot][tot];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = tot + <span class="number">1</span>;i &lt;= N; ++i) &#123;   <span class="comment">//把tot列的元都消掉</span></span><br><span class="line">      <span class="keyword">if</span>(matr[i][tot] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">double</span> now = matr[i][tot] / stan;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= N + <span class="number">1</span>; ++j) &#123;</span><br><span class="line">      matr[i][j] -= matr[tot][j] * now;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(matr[N][N] == <span class="number">0</span>) &#123;<span class="built_in">printf</span>(<span class="string">"No Solution\n"</span>);<span class="built_in">exit</span>(<span class="number">0</span>);&#125;</span><br><span class="line">  <span class="keyword">else</span> cal();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;N);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= N + <span class="number">1</span>; ++j) &#123;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;matr[i][j]);</span><br><span class="line">      <span class="keyword">if</span>(matr[i][j] == <span class="number">0</span>) free_line[j]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// special situation</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="keyword">if</span>(free_line[i] == N) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"No Solution\n"</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  solve();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -363,133 +361,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/My-first-article/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sys_Con">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Konnyaku Sys_Con">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/29/My-first-article/" itemprop="url">My first article</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-29T10:08:27+08:00">
-                2017-12-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/高斯消元/" rel="tag"># 高斯消元</a>
           
-            
+            <a href="/tags/洛谷/" rel="tag"># 洛谷</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="一年中最后几天才开始动手搭建这个blog真是有意思啊"><a href="#一年中最后几天才开始动手搭建这个blog真是有意思啊" class="headerlink" title="一年中最后几天才开始动手搭建这个blog真是有意思啊"></a><strong><em>一年中最后几天才开始动手搭建这个blog真是有意思啊</em></strong></h3><h4 id="再见-2017"><a href="#再见-2017" class="headerlink" title="再见 2017!"></a><strong>再见 2017!</strong></h4><h4 id="你好-2018"><a href="#你好-2018" class="headerlink" title="你好 2018!"></a><strong>你好 2018!</strong></h4><h3 id=""><a href="#" class="headerlink" title=""></a><img src="/images/2017-2018.jpeg" alt=""></h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/12/29/My-first-article/" rel="next" title="My first article">
+                <i class="fa fa-chevron-left"></i> My first article
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -499,10 +402,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -510,6 +414,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -530,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -593,6 +508,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目背景"><span class="nav-number">1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">2.</span> <span class="nav-text">题目描述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.1.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式："><span class="nav-number">2.1.1.</span> <span class="nav-text">输入格式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式："><span class="nav-number">2.1.2.</span> <span class="nav-text">输出格式：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输入输出样例"><span class="nav-number">2.1.3.</span> <span class="nav-text">输入输出样例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#说明"><span class="nav-number">2.1.4.</span> <span class="nav-text">说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题报告"><span class="nav-number">3.</span> <span class="nav-text">解题报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -712,6 +643,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
