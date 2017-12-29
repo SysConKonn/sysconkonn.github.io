@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="高斯消元,POJ," />
 
 
 
@@ -79,12 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Konnyaku Sys_Con">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="开关问题Time Limit: 1000MS   Memory Limit: 30000K Description有N个相同的开关，每个开关都与某些开关有着联系，每当你打开或者关闭某个开关的时候，其他的与此开关相关联的开关也会相应地发生变化，即这些相联系的开关的状态如果原来为开就变为关，如果为关就变为开。你的目标是经过若干次开关操作后使得最后N个开关达到一个特定的状态。对于任意一个开关，最多只能进">
+<meta name="keywords" content="高斯消元,POJ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="poj1830题解">
+<meta property="og:url" content="http://yoursite.com/2017/12/29/poj1830题解/index.html">
 <meta property="og:site_name" content="Konnyaku Sys_Con">
+<meta property="og:description" content="开关问题Time Limit: 1000MS   Memory Limit: 30000K Description有N个相同的开关，每个开关都与某些开关有着联系，每当你打开或者关闭某个开关的时候，其他的与此开关相关联的开关也会相应地发生变化，即这些相联系的开关的状态如果原来为开就变为关，如果为关就变为开。你的目标是经过若干次开关操作后使得最后N个开关达到一个特定的状态。对于任意一个开关，最多只能进">
+<meta property="og:updated_time" content="2017-12-29T07:19:39.535Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Konnyaku Sys_Con">
+<meta name="twitter:title" content="poj1830题解">
+<meta name="twitter:description" content="开关问题Time Limit: 1000MS   Memory Limit: 30000K Description有N个相同的开关，每个开关都与某些开关有着联系，每当你打开或者关闭某个开关的时候，其他的与此开关相关联的开关也会相应地发生变化，即这些相联系的开关的状态如果原来为开就变为关，如果为关就变为开。你的目标是经过若干次开关操作后使得最后N个开关达到一个特定的状态。对于任意一个开关，最多只能进">
 
 
 
@@ -114,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/29/poj1830题解/"/>
 
 
 
 
 
-  <title>Konnyaku Sys_Con</title>
+  <title>poj1830题解 | Konnyaku Sys_Con</title>
   
 
 
@@ -139,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -233,9 +237,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -265,9 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/29/poj1830题解/" itemprop="url">poj1830题解</a></h1>
+          <h1 class="post-title" itemprop="name headline">poj1830题解</h1>
         
 
         <div class="post-meta">
@@ -339,9 +341,7 @@
       
 
       
-        
-          
-            <h2 id="开关问题"><a href="#开关问题" class="headerlink" title="开关问题"></a><p align="center">开关问题</p></h2><h6 id="Time-Limit-1000MS-Memory-Limit-30000K"><a href="#Time-Limit-1000MS-Memory-Limit-30000K" class="headerlink" title="Time Limit: 1000MS   Memory Limit: 30000K "></a><p align="center">Time Limit: 1000MS   Memory Limit: 30000K </p></h6><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>有N个相同的开关，每个开关都与某些开关有着联系，每当你打开或者关闭某个开关的时候，其他的与此开关相关联的开关也会相应地发生变化，即这些相联系的开关的状态如果原来为开就变为关，如果为关就变为开。你的目标是经过若干次开关操作后使得最后N个开关达到一个特定的状态。对于任意一个开关，最多只能进行一次开关操作。你的任务是，计算有多少种可以达到指定状态的方法。（不计开关操作的顺序）</p>
+        <h2 id="开关问题"><a href="#开关问题" class="headerlink" title="开关问题"></a><p align="center">开关问题</p></h2><h6 id="Time-Limit-1000MS-Memory-Limit-30000K"><a href="#Time-Limit-1000MS-Memory-Limit-30000K" class="headerlink" title="Time Limit: 1000MS   Memory Limit: 30000K "></a><p align="center">Time Limit: 1000MS   Memory Limit: 30000K </p></h6><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>有N个相同的开关，每个开关都与某些开关有着联系，每当你打开或者关闭某个开关的时候，其他的与此开关相关联的开关也会相应地发生变化，即这些相联系的开关的状态如果原来为开就变为关，如果为关就变为开。你的目标是经过若干次开关操作后使得最后N个开关达到一个特定的状态。对于任意一个开关，最多只能进行一次开关操作。你的任务是，计算有多少种可以达到指定状态的方法。（不计开关操作的顺序）</p>
 <h3 id="Input"><a href="#Input" class="headerlink" title="Input"></a>Input</h3><p>输入第一行有一个数K，表示以下有K组测试数据。</p>
 <p>每组测试数据的格式如下：</p>
 <p>第一行 一个数N（0 &lt; N &lt; 29）</p>
@@ -372,8 +372,6 @@
 <p>怎么求自由元？若A[i][i] = 0则第i个灯是自由元。</p>
 <h2 id="程序"><a href="#程序" class="headerlink" title="程序"></a>程序</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 30</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> fr[MAX_N], be[MAX_N];</span><br><span class="line"><span class="keyword">int</span> A[MAX_N][MAX_N], B[MAX_N];</span><br><span class="line"><span class="keyword">int</span> free_x[MAX_N];</span><br><span class="line"><span class="keyword">int</span> N;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check_</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= N; ++j) <span class="keyword">if</span>(A[i][j] == <span class="number">0</span>) sum++;</span><br><span class="line">    <span class="keyword">if</span>(sum == N &amp;&amp; B[i] == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_false</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Oh,it's impossible~!!\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cal</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> res = <span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="keyword">if</span>(free_x[i]) res *= <span class="number">2</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gauss</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">memset</span>(free_x, <span class="number">0</span>, <span class="keyword">sizeof</span>(free_x));</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i) &#123;</span><br><span class="line">    <span class="keyword">int</span> k = i;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt;= N; ++j)</span><br><span class="line">      <span class="keyword">if</span> (A[j][i] &gt; A[k][i]) k = j;</span><br><span class="line">    <span class="keyword">if</span>(A[k][i] == <span class="number">0</span>) free_x[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (k != i)&#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= N; ++j) <span class="built_in">std</span>::swap(A[i][j], A[k][j]);</span><br><span class="line">      <span class="built_in">std</span>::swap(B[i], B[k]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>;j &lt;= N; ++j) &#123;</span><br><span class="line">      <span class="keyword">if</span>(A[j][i] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">1</span>;k &lt;= N; ++k)</span><br><span class="line">    A[j][k] ^= A[i][k];</span><br><span class="line">      B[j] ^= B[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span>(check_() == <span class="number">1</span>) print_false();</span><br><span class="line">  <span class="keyword">else</span> cal();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//Read()</span></span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;N);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;fr[i]);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i) &#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;be[i]);</span><br><span class="line">    B[i] = fr[i] ^ be[i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> a, b;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i) A[i][i] = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b) == <span class="number">2</span> &amp;&amp; a != <span class="number">0</span> &amp;&amp; b != <span class="number">0</span>) </span><br><span class="line">    A[b][a] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  gauss();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">memset</span>(fr, <span class="number">0</span>, <span class="keyword">sizeof</span>(fr));</span><br><span class="line">  <span class="built_in">memset</span>(be, <span class="number">0</span>, <span class="keyword">sizeof</span>(be));</span><br><span class="line">  <span class="built_in">memset</span>(A, <span class="number">0</span>, <span class="keyword">sizeof</span>(A));</span><br><span class="line">  <span class="built_in">memset</span>(B, <span class="number">0</span>, <span class="keyword">sizeof</span>(B));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ntot;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;ntot);</span><br><span class="line">  <span class="keyword">while</span>(ntot--) &#123;</span><br><span class="line">    init();</span><br><span class="line">    solve();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -388,299 +386,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/高斯消元模板题luogu3389题解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sys_Con">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Konnyaku Sys_Con">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/29/高斯消元模板题luogu3389题解/" itemprop="url">高斯消元模板题luogu3389题解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-29T14:54:11+08:00">
-                2017-12-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">in</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数学/" itemprop="url" rel="index">
-                    <span itemprop="name">数学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/高斯消元/" rel="tag"># 高斯消元</a>
           
-
+            <a href="/tags/POJ/" rel="tag"># POJ</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p><strong>Gauss消元</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个线性方程组，对其求解</p>
-<h3 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h3><h4 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h4><p>第一行，一个正整数 nnn</p>
-<p>第二至 n+1行，每行 n+1 个整数，为a_1, a_2 \cdots a_n和 b，代表一组方程。</p>
-<h4 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h4><p>共n行，每行一个数，第 i行为x_i （保留2位小数）</p>
-<p>如果不存在唯一解，在第一行输出”No Solution”.</p>
-<h4 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h4><p>输入样例#1：</p>
-<p>3<br>1 3 4 5<br>1 4 7 3<br>9 3 2 2<br>输出样例#1：</p>
-<p>-0.97<br>5.18<br>-2.39</p>
-<h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>  1≤n≤100,∣ai∣≤104,∣b∣≤104</p>
-<hr>
-<h2 id="解题报告"><a href="#解题报告" class="headerlink" title="解题报告"></a>解题报告</h2><p> 这就是个高斯消元的模板题，一开始还认为很难，又找wikipedia,又找百度百科.</p>
-<p>虽然最后没有什么用，但是还是把链接贴上:</p>
-<p> wiki : <a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E6%B6%88%E5%8E%BB%E6%B3%95" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E6%B6%88%E5%8E%BB%E6%B3%95</a></p>
-<p> baidu : <a href="https://baike.baidu.com/item/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95/619561?fr=aladdin" target="_blank" rel="noopener">https://baike.baidu.com/item/%E9%AB%98%E6%96%AF%E6%B6%88%E5%85%83%E6%B3%95/619561?fr=aladdin</a></p>
-<p>一开始看完wiki上面的高斯消元大概知道只有唯一解的方法怎么写了，但是唯一一个问题就是</p>
-<p>怎么判断无解或者有多个解。</p>
-<p>所以就因为这个问题看wiki和百科看了一个多小时，最后还是不懂(不禁吐槽wiki后面写的晦涩难懂)</p>
-<p>后来问了dra, 他就说这题很简单，你直接用平常你解方程的方法去判断</p>
-<p>我一想，好像就是这样就可以了。</p>
-<p>然后怎么会无解呢:已知最后会化简成a * x = b的形式，如果此时系数a为0就不行。</p>
-<p>怎么会又无穷多个解呢:</p>
-<p>就是存在自由元啊，如果matr[i][i]==0说明x[i]是个自由元.</p>
-<p>所以这题就做出来了.</p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 1005</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// problem</span></span><br><span class="line"><span class="keyword">int</span> N;</span><br><span class="line"><span class="keyword">double</span> matr[MAX_N][MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="comment">// record</span></span><br><span class="line"><span class="keyword">double</span> free_line[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">cal</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  matr[N][N + <span class="number">1</span>] /= matr[N][N];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = N - <span class="number">1</span>;i &gt; <span class="number">0</span>; --i) &#123;  <span class="comment">// 处理每一行</span></span><br><span class="line">    <span class="keyword">double</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt;= N; ++j) &#123;</span><br><span class="line">      sum += matr[i][j] * matr[j][N + <span class="number">1</span>];</span><br><span class="line">      <span class="comment">//printf("%lf  %lf  %lf\n", matr[i][j], matr[j][N + 1], sum);</span></span><br><span class="line">    &#125;</span><br><span class="line">    matr[i][N + <span class="number">1</span>] = (matr[i][N + <span class="number">1</span>] - sum) / matr[i][i];</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%.2lf\n"</span>, matr[i][N + <span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> tot = <span class="number">1</span>;tot &lt; N; ++tot) &#123;</span><br><span class="line">    <span class="keyword">double</span> stan = matr[tot][tot];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = tot + <span class="number">1</span>;i &lt;= N; ++i) &#123;   <span class="comment">//把tot列的元都消掉</span></span><br><span class="line">      <span class="keyword">if</span>(matr[i][tot] == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">double</span> now = matr[i][tot] / stan;</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= N + <span class="number">1</span>; ++j) &#123;</span><br><span class="line">      matr[i][j] -= matr[tot][j] * now;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(matr[N][N] == <span class="number">0</span>) &#123;<span class="built_in">printf</span>(<span class="string">"No Solution\n"</span>);<span class="built_in">exit</span>(<span class="number">0</span>);&#125;</span><br><span class="line">  <span class="keyword">else</span> cal();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;N);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>;j &lt;= N + <span class="number">1</span>; ++j) &#123;</span><br><span class="line">      <span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;matr[i][j]);</span><br><span class="line">      <span class="keyword">if</span>(matr[i][j] == <span class="number">0</span>) free_line[j]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// special situation</span></span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i)</span><br><span class="line">    <span class="keyword">if</span>(free_line[i] == N) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"No Solution\n"</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  solve();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/My-first-article/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sys_Con">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Konnyaku Sys_Con">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/29/My-first-article/" itemprop="url">My first article</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-29T10:08:27+08:00">
-                2017-12-29
-              </time>
+              <a href="/2017/12/29/高斯消元模板题luogu3389题解/" rel="next" title="高斯消元模板题luogu3389题解">
+                <i class="fa fa-chevron-left"></i> 高斯消元模板题luogu3389题解
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h3 id="一年中最后几天才开始动手搭建这个blog真是有意思啊"><a href="#一年中最后几天才开始动手搭建这个blog真是有意思啊" class="headerlink" title="一年中最后几天才开始动手搭建这个blog真是有意思啊"></a><strong><em>一年中最后几天才开始动手搭建这个blog真是有意思啊</em></strong></h3><h4 id="再见-2017"><a href="#再见-2017" class="headerlink" title="再见 2017!"></a><strong>再见 2017!</strong></h4><h4 id="你好-2018"><a href="#你好-2018" class="headerlink" title="你好 2018!"></a><strong>你好 2018!</strong></h4><h3 id=""><a href="#" class="headerlink" title=""></a><img src="/images/2017-2018.jpeg" alt=""></h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -690,10 +427,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -701,6 +439,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -721,8 +461,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -784,6 +533,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开关问题"><span class="nav-number">1.</span> <span class="nav-text">开关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Time-Limit-1000MS-Memory-Limit-30000K"><span class="nav-number">1.0.0.0.1.</span> <span class="nav-text">Time Limit: 1000MS   Memory Limit: 30000K </span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Description"><span class="nav-number">1.1.</span> <span class="nav-text">Description</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Input"><span class="nav-number">1.2.</span> <span class="nav-text">Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Input"><span class="nav-number">1.4.</span> <span class="nav-text">Sample Input</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sample-Output"><span class="nav-number">1.5.</span> <span class="nav-text">Sample Output</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一组数据的说明："><span class="nav-number">1.6.</span> <span class="nav-text">第一组数据的说明：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#题解"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#程序"><span class="nav-number">3.</span> <span class="nav-text">程序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -903,6 +668,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
