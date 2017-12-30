@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/12/30/luogu3808AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%AE%80%E5%8D%95%E7%89%88/</loc>
-    <lastmod>2017-12-30T12:49:02.210Z</lastmod>
+    <loc>http://yoursite.com/2017/12/30/luogu3976AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8A%A0%E5%BC%BA%E7%89%88/</loc>
+    <lastmod>2017-12-30T13:21:19.490Z</lastmod>
     <data>
         <display>
-        <title>luogu3808AC自动机简单版</title>
-        <pubTime>2017-12-30T08:45:25.000Z</pubTime>
+        <title>luogu3976AC自动机加强版</title>
+        <pubTime>2017-12-30T08:42:21.000Z</pubTime>
         
         <tag>模板</tag>
          
@@ -29,12 +29,12 @@
 
     
   <url>
-    <loc>http://yoursite.com/2017/12/30/luogu3976AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8A%A0%E5%BC%BA%E7%89%88/</loc>
-    <lastmod>2017-12-30T08:46:48.358Z</lastmod>
+    <loc>http://yoursite.com/2017/12/30/luogu3808AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%AE%80%E5%8D%95%E7%89%88/</loc>
+    <lastmod>2017-12-30T13:16:12.232Z</lastmod>
     <data>
         <display>
-        <title>luogu3976AC自动机加强版</title>
-        <pubTime>2017-12-30T08:42:21.000Z</pubTime>
+        <title>luogu3808AC自动机简单版</title>
+        <pubTime>2017-12-30T08:45:25.000Z</pubTime>
         
         <tag>模板</tag>
          
@@ -186,9 +186,9 @@
         <title>poj1830题解-开关问题</title>
         <pubTime>2017-12-29T07:09:14.000Z</pubTime>
         
-        <tag>POJ</tag>
-         
         <tag>高斯消元</tag>
+         
+        <tag>POJ</tag>
          
          
            
