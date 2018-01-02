@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/tags/index.html</loc>
+    
+    <lastmod>2018-01-02T08:12:14.926Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/categories/index.html</loc>
+    
+    <lastmod>2018-01-02T08:11:23.297Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-01-02T08:09:39.261Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2017/12/30/luogu3976AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%8A%A0%E5%BC%BA%E7%89%88/</loc>
     
     <lastmod>2017-12-30T13:21:19.490Z</lastmod>
@@ -37,13 +58,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2017-12-29T11:38:45.190Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/2017/12/29/My-first-article/</loc>
     
     <lastmod>2017-12-29T11:24:32.299Z</lastmod>
@@ -75,20 +89,6 @@
     <loc>http://yoursite.com/2017/12/29/HDU1754I-Hate-It%E9%A2%98%E8%A7%A3-%E7%BA%BF%E6%AE%B5%E6%A0%91%E6%A8%A1%E6%9D%BF%E9%A2%98/</loc>
     
     <lastmod>2017-12-29T10:54:11.804Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
-    
-    <lastmod>2017-12-29T07:54:54.773Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/index.html</loc>
-    
-    <lastmod>2017-12-29T07:51:23.012Z</lastmod>
     
   </url>
   
