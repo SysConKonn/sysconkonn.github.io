@@ -3,22 +3,54 @@
 
 
     
-    
+  <url>
+    <loc>http://yoursite.com/2018/01/07/%E3%80%8CNOI2011%E3%80%8D%E9%98%BF%E7%8B%B8%E7%9A%84%E6%89%93%E5%AD%97%E6%9C%BA/</loc>
+    <lastmod>2018-01-07T11:00:00.456Z</lastmod>
+    <data>
+        <display>
+        <title>「NOI2011」阿狸的打字机</title>
+        <pubTime>2018-01-07T10:50:18.000Z</pubTime>
+        
+        <tag>字符串匹配</tag>
+         
+        <tag>AC自动机</tag>
+         
+         
+           
+             
+              <breadCrumb title="字符串" url="http://yoursite.com/categories/%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+          
+        </display>
+    </data>
+    </url>
+
     
   <url>
     <loc>http://yoursite.com/2018/01/03/%E3%80%8CLOJ-Hello2018-A%E3%80%8D%E5%A5%B4%E9%9A%B6%E4%B8%BB%E7%9A%84%E6%B8%B8%E6%88%8F/</loc>
-    <lastmod>2018-01-03T03:20:39.726Z</lastmod>
+    <lastmod>2018-01-07T10:59:06.935Z</lastmod>
     <data>
         <display>
         <title>「LOJ'Hello2018'-A」奴隶主的游戏</title>
         <pubTime>2018-01-03T02:41:33.000Z</pubTime>
         
+        <tag>LOJ</tag>
+         
+        <tag>数学</tag>
+         
          
            
+             
+              <breadCrumb title="LOJ" url="http://yoursite.com/categories/LOJ/"/>
+          
+             
+              <breadCrumb title="数学" url="http://yoursite.com/categories/LOJ/%E6%95%B0%E5%AD%A6/"/>
+          
         </display>
     </data>
     </url>
 
+    
+    
     
   <url>
     <loc>http://yoursite.com/2017/12/30/luogu3808AC%E8%87%AA%E5%8A%A8%E6%9C%BA%E7%AE%80%E5%8D%95%E7%89%88/</loc>
@@ -206,9 +238,9 @@
         <title>poj1830题解-开关问题</title>
         <pubTime>2017-12-29T07:09:14.000Z</pubTime>
         
-        <tag>高斯消元</tag>
-         
         <tag>POJ</tag>
+         
+        <tag>高斯消元</tag>
          
          
            

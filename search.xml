@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[「NOI2011」阿狸的打字机]]></title>
+    <url>%2F2018%2F01%2F07%2F%E3%80%8CNOI2011%E3%80%8D%E9%98%BF%E7%8B%B8%E7%9A%84%E6%89%93%E5%AD%97%E6%9C%BA%2F</url>
+    <content type="text"><![CDATA[没什么时间，还在搞treap和splay，先放个题面和程序再说。 题目背景阿狸喜欢收藏各种稀奇古怪的东西，最近他淘到一台老式的打字机。 题目描述打字机上只有28个按键，分别印有26个小写英文字母和’B’、’P’两个字母。经阿狸研究发现，这个打字机是这样工作的： ·输入小写字母，打字机的一个凹槽中会加入这个字母(这个字母加在凹槽的最后)。 ·按一下印有’B’的按键，打字机凹槽中最后一个字母会消失。 ·按一下印有’P’的按键，打字机会在纸上打印出凹槽中现有的所有字母并换行，但凹槽中的字母不会消失。 例如，阿狸输入aPaPBbP，纸上被打印的字符如下： a aa ab 我们把纸上打印出来的字符串从1开始顺序编号，一直到n。打字机有一个非常有趣的功能，在打字机中暗藏一个带数字的小键盘，在小键盘上输入两个数(x,y)（其中1≤x,y≤n），打字机会显示第x个打印的字符串在第y个打印的字符串中出现了多少次。 阿狸发现了这个功能以后很兴奋，他想写个程序完成同样的功能，你能帮助他么？ ### 输入输出格式 输入格式：输入的第一行包含一个字符串，按阿狸的输入顺序给出所有阿狸输入的字符。 第二行包含一个整数m，表示询问个数。 接下来m行描述所有由小键盘输入的询问。其中第i行包含两个整数x, y，表示第i个询问为(x, y)。 输出格式：输出m行，其中第i行包含一个整数，表示第i个询问的答案。 输入输出样例输入样例#1：aPaPBbP31 21 32 3 输出样例#1：210 说明数据范围:对于100%的数据，n&lt;=100000,m&lt;=100000,第一行总长度&lt;=100000。 程序123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171#include &lt;cstdio&gt;#include &lt;stack&gt;#include &lt;cstring&gt;#include &lt;queue&gt;#define MAX_N 100100using namespace std;struct str &#123; char s; bool book;&#125;;stack&lt;str&gt; stk;char t[MAX_N];int ch[MAX_N][30], sz = 1, fa[MAX_N];int strin[MAX_N], strsum;int M;int head[MAX_N], to[MAX_N], nxt[MAX_N], ttop;int fail[MAX_N];int fail_head[MAX_N], fail_to[MAX_N], fail_nxt[MAX_N], x[MAX_N], failtop;int totans[MAX_N];int bit[MAX_N * 2];int idx (char c) &#123;return c - 'a';&#125;void Read () &#123; int len_ = strlen(t); int u = 0; for (int i = 0;i &lt; len_; ++i) &#123; int c = idx(t[i]); if (t[i] == 'P') &#123; stk.top().book = true; strin[++strsum] = u; &#125; else if (t[i] == 'B') &#123; if (stk.top().book == true) &#123; //当前删除的是合法的点，不用烧边，把正确标记移至下一个字符 stk.pop(); if (!stk.empty()) stk.top().book = true; u = fa[u]; //向上到上一层点 &#125; else &#123; ch[fa[u]][stk.top().s - 'a'] = 0; //它的上一层向它无边(烧边) stk.pop(); u = fa[u]; sz--; //这条边不算数 &#125; &#125; else &#123; if (ch[u][c]) &#123;u = ch[u][c];continue;&#125; ch[u][c] = sz++; //加一条边 fa[sz - 1] = u; //记录它的上层节点编号，以便于删除时向上 stk.push((str)&#123;t[i], false&#125;); //将当前字符串压入栈中，初始值为false因为当时还没有P是一个不合法的值 u = ch[u][c]; //跳到下一个点 &#125; &#125;&#125;void fail_AddEdge (int _from_, int _to_) &#123; fail_nxt[++failtop] = fail_head[_from_]; fail_head[_from_] = failtop; fail_to[failtop] = _to_; &#125;void getfail () &#123; queue&lt;int&gt; q; fail[0] = 0; for (int i = 0;i &lt; 26; ++i) if (ch[0][i]) &#123; //AddEdge fail_AddEdge(0, ch[0][i]); q.push(ch[0][i]); &#125; while (!q.empty()) &#123; int u = q.front(); q.pop(); for (int c = 0;c &lt; 26; ++c) &#123; if (!ch[u][c]) continue; q.push(ch[u][c]); int v = fail[u]; while (v &amp;&amp; !ch[v][c]) v = fail[v]; fail[ch[u][c]] = ch[v][c]; //AddEdge int _from_ = ch[v][c], _to_ = ch[u][c]; fail_AddEdge(_from_, _to_); &#125; &#125;&#125;int tot;int l[MAX_N], r[MAX_N], order_[MAX_N], iorder_[MAX_N];void get_dfs_order (int x, int fa) &#123; l[x] = ++tot; order_[tot] = x; iorder_[x] = tot; for (int now = fail_head[x]; now; now = fail_nxt[now]) &#123; int _to = fail_to[now]; if (_to == fa) continue; get_dfs_order(_to, x); &#125; r[x] = tot;&#125;int bit_find (int i) &#123; int s = 0; while (i &gt; 0) &#123; s += bit[i]; i -= i &amp; -i; &#125; return s;&#125;void bit_add (int i, int x) &#123; while (i &lt;= tot) &#123; bit[i] += x; i += i &amp; -i; &#125;&#125;void rebuild () &#123; int pt = 0, u = 0; int len_ = strlen(t); for (int i = 0;i &lt; len_; ++i) &#123; int c = idx(t[i]); if (t[i] == 'P') &#123; ++pt; for (int i = head[pt]; i; i = nxt[i]) &#123; int now = strin[to[i]]; totans[x[i]] = bit_find (r[now]) - bit_find(l[now] - 1); &#125; &#125; else if (t[i] == 'B') &#123; bit_add(l[u], -1); u = fa[u]; &#125; else &#123; bit_add(l[ch[u][c]], 1); u = ch[u][c]; &#125; &#125;&#125;int main () &#123; scanf("%s", t); Read(); getfail(); scanf("%d", &amp;M); int _book_[MAX_N]; memset(_book_, 0, sizeof(_book_)); for (int i = 1;i &lt;= M; ++i) &#123; int a, b; scanf("%d%d", &amp;a, &amp;b); _book_[b] = 1; nxt[++ttop] = head[b]; head[b] = ttop; to[ttop] = a; x[ttop] = i; &#125; get_dfs_order(0, 0); rebuild(); for (int i = 1;i &lt;= M; ++i) printf("%d\n", totans[i]); return 0;&#125;]]></content>
+      <categories>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>字符串匹配</tag>
+        <tag>AC自动机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[「LOJ'Hello2018'-A」奴隶主的游戏]]></title>
     <url>%2F2018%2F01%2F03%2F%E3%80%8CLOJ-Hello2018-A%E3%80%8D%E5%A5%B4%E9%9A%B6%E4%B8%BB%E7%9A%84%E6%B8%B8%E6%88%8F%2F</url>
     <content type="text"><![CDATA[题目题目描述1奴隶主家的公告：欢迎和我玩数独游戏，赢了你将获得万贯家财，输了 …… 而你正好看到这则公告 数独游戏的规则是这样的： 初始的时候有一个 n 阶数独（n 阶数独即边长为 n^2 的分成 n^2 个 n×n 区域的方格，下图为 4 阶数独），并且已经填了 k 个格子，现在两个人轮流在空格子中填数（当然是你先填啦），每次填完需保证局面合法（合法即要求每个人填完后同行同列同区域不能出现相同数字并且填的数字是 [1,n^2] 中的整数），能填必须填，不能填者输。 现在你要确定你（先手）是否有必胜策略，以免鲁莽输掉游戏沦为奴隶。 输入格式第一行一个整数 T 表示有 T 组数据。 对于每组数据第一行两个整数 n,k。 接下来有 kkk 行，每行三个整数 x,y,z 表示第 x 行 y 列填了数字 z。保证填的格子不重复，且已经填好的数字合法。 输出格式对于每组数据输出一个字符串：YES 表示有必胜策略，NO 表示没有必胜策略。 样例注意：样例中有 1≤n&lt;4 的情况，这只是为了便于解释样例及说明游戏规则，在实际的测试数据中保证 n≥4。 样例输入 111 0 样例输出 1YES 样例解释 1初始局面是一个 1x1的方块并且没有填，你只要填上 1 就可获胜。 样例输入 214 29 13 19 16 2 样例输出 2NO 样例解释 2输入即为上图填了 1 和 2 后的局面。 数据范围与提示对于所有数据，4​≤n≤5, 0≤k≤2, 1≤T≤20, 1≤x, y, z≤n^2。 保证填的格子不重复，且已经填好的数字合法。 题解其实题目很简单， 找规律就可以以下就找出来。你想想自己应该怎么样才能赢，也就是想想最优策略。在一个2x2 x 2x2 的小方格中和自己玩了一盘后，我大概知道怎么样才能获胜了。可以把这个数独想象成一个棋盘。我们一定可以找到棋盘的中心，对方每下一步，你就下一步相对于棋盘的中心与他所下棋对称的。这样只需考虑谁最后会下完整盘棋的最后一个子，他就赢了。然后只要考虑棋盘中可下空位的奇偶性。代码也就出来了，非常短。(十足的水题)123456789101112131415161718192021#include &lt;cstdio&gt;#include &lt;iostream&gt;using namespace std;int T, N, K;int main () &#123; scanf("%d", &amp;T); while (T--) &#123; scanf("%d%d", &amp;N, &amp;K); int sum = N * N * N * N; int x, y, z; for (int i = 1;i &lt;= K; ++i) &#123; scanf("%d%d%d", &amp;x, &amp;y, &amp;z); &#125; int res = sum - K; if (res % 2 == 0) printf("NO\n"); else printf("YES\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>LOJ</category>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>LOJ</tag>
+        <tag>数学</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[luogu3808AC自动机简单版]]></title>
@@ -94,8 +114,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>高斯消元</tag>
         <tag>POJ</tag>
+        <tag>高斯消元</tag>
       </tags>
   </entry>
   <entry>
