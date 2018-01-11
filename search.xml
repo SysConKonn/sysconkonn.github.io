@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[「HNOI2002」营业额统计 Treap模板题]]></title>
+    <url>%2F2018%2F01%2F11%2F%E3%80%8CHNOI2002%E3%80%8D%E8%90%A5%E4%B8%9A%E9%A2%9D%E7%BB%9F%E8%AE%A1-Treap%E6%A8%A1%E6%9D%BF%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[原题戳我题目描述Tiger最近被公司升任为营业部经理，他上任后接受公司交给的第一项任务便是统计并分析公司成立以来的营业情况。 Tiger拿出了公司的账本，账本上记录了公司成立以来每天的营业额。分析营业情况是一项相当复杂的工作。由于节假日，大减价或者是其他情况的时候，营业额会出现一定的波动，当然一定的波动是能够接受的，但是在某些时候营业额突变得很高或是很低，这就证明公司此时的经营状况出现了问题。经济管理学上定义了一种最小波动值来衡量这种情况： 当最小波动值越大时，就说明营业情况越不稳定。 而分析整个公司的从成立到现在营业情况是否稳定，只需要把每一天的最小波动值加起来就可以了。你的任务就是编写一个程序帮助Tiger来计算这一个值。 第一天的最小波动值为第一天的营业额。 该天的最小波动值=min{|该天以前某一天的营业额-该天营业额|}。 输入输出格式输入格式：第一行为正整数n（n&lt;=32767） ，表示该公司从成立一直到现在的天数，接下来的n行每行有一个整数ai(|ai|&lt;=1000000) ，表示第i天公司的营业额，可能存在负数。 输出格式：输入输出样例输入样例#1：6512546 输出样例#1： 复制12 说明结果说明：5+|1-5|+|2-1|+|5-5|+|4-5|+|6-5|=5+4+1+0+1+1=12 题解一道十分裸的Treap，每次插入一个点之前求出它的前驱和后继，取和它距离较近的算出最小波动值即可。前驱 : 当前序列中小于该数的最大数后继 : 当前序列中大于该数的最小树 虽说时Treap模板，但还是要知道Treap怎么打才行吧。所以就简单的介绍一下:Treap其实是BST(二叉搜索树)的平衡版本。BST:保证每个结点的左子树所有结点都比它小，右子树上所有结点都比它大的树。或者可以看wikipedia的解释。但是仔细一想，是不是很多时候，都会出现，左子树一大串，几乎已经接近一条长链，但是右子树还只有一个点的情况呢？此时就应该将它平衡，如何平衡。可以参考周老师的pdf,也可以自己到网上查一下。好了就是这么简单。 为数不多的没用指针写的Treap123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;ctime&gt;#include &lt;cstring&gt;#define MAX_N 50010#define INF 214748647#define MOD 999999using namespace std;struct point &#123; int w, rd, sz, re, l, r;&#125;p[MAX_N];int root, ans, tot;long long N, num[MAX_N], sum, pre_, nxt_;int rand_ () &#123; int a, b; //return a * b * (a - b) * (a + b) % MOD; return 1;&#125;void up (int x) &#123;p[x].sz = p[p[x].l].sz + p[p[x].r].sz + p[x].re;&#125;void r_rot (int &amp;x) &#123; int y = p[x].r; p[x].r = p[y].l; p[y].l = x; p[y].sz = p[x].sz; up(x); x = y;&#125;void l_rot (int &amp;x) &#123; int y = p[x].l; p[x].l = p[y].r; p[y].r = x; p[y].sz = p[x].sz; up(x); x = y;&#125;void ins (long long x, int&amp; k) &#123; if (k == 0) &#123; tot++; k = tot; p[k].w = x; p[k].sz = p[k].re = 1; p[k].rd = rand(); return; &#125; p[k].sz++; if (p[k].w == x) p[k].re++; else &#123; if (x &gt; p[k].w) &#123; ins(x, p[k].r); if (p[k].rd &gt; p[p[k].r].rd) r_rot(k); &#125; else &#123; ins(x, p[k].l); if (p[k].rd &gt; p[p[k].l].rd) l_rot(k); &#125; &#125;&#125;void pre (long long x, int k) &#123; if (k == 0) return; if (p[k].w &lt;= x) &#123; ans = k; pre(x, p[k].r); &#125; else pre(x, p[k].l);&#125;void nxt (long long x, int k) &#123; if (k == 0) return; if (p[k].w &gt;= x) &#123; ans = k; nxt(x, p[k].l); &#125; else nxt(x, p[k].r);&#125;int main () &#123; srand(0); scanf("%lld", &amp;N); p[0].w = INF; for (int i = 1;i &lt;= N; ++i) &#123; scanf("%lld", &amp;num[i]); &#125; sum = num[1]; ins(num[1], root); for (int i = 2;i &lt;= N; ++i) &#123; pre(num[i], root); int x = ans; nxt(num[i], root); sum += (long long)min(abs(num[i] - p[x].w), abs(p[ans].w - num[i])); ins(num[i], root); &#125; printf("%lld\n", sum); return 0;&#125;cpp]]></content>
+      <tags>
+        <tag>Treap</tag>
+        <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[「NOI2011」阿狸的打字机]]></title>
     <url>%2F2018%2F01%2F07%2F%E3%80%8CNOI2011%E3%80%8D%E9%98%BF%E7%8B%B8%E7%9A%84%E6%89%93%E5%AD%97%E6%9C%BA%2F</url>
     <content type="text"><![CDATA[原题戳我题目背景阿狸喜欢收藏各种稀奇古怪的东西，最近他淘到一台老式的打字机。 题目描述打字机上只有28个按键，分别印有26个小写英文字母和’B’、’P’两个字母。经阿狸研究发现，这个打字机是这样工作的： ·输入小写字母，打字机的一个凹槽中会加入这个字母(这个字母加在凹槽的最后)。 ·按一下印有’B’的按键，打字机凹槽中最后一个字母会消失。 ·按一下印有’P’的按键，打字机会在纸上打印出凹槽中现有的所有字母并换行，但凹槽中的字母不会消失。 例如，阿狸输入aPaPBbP，纸上被打印的字符如下： a aa ab 我们把纸上打印出来的字符串从1开始顺序编号，一直到n。打字机有一个非常有趣的功能，在打字机中暗藏一个带数字的小键盘，在小键盘上输入两个数(x,y)（其中1≤x,y≤n），打字机会显示第x个打印的字符串在第y个打印的字符串中出现了多少次。 阿狸发现了这个功能以后很兴奋，他想写个程序完成同样的功能，你能帮助他么？ ### 输入输出格式 输入格式：输入的第一行包含一个字符串，按阿狸的输入顺序给出所有阿狸输入的字符。 第二行包含一个整数m，表示询问个数。 接下来m行描述所有由小键盘输入的询问。其中第i行包含两个整数x, y，表示第i个询问为(x, y)。 输出格式：输出m行，其中第i行包含一个整数，表示第i个询问的答案。 输入输出样例输入样例#1：aPaPBbP31 21 32 3 输出样例#1：210 说明数据范围:对于100%的数据，n&lt;=100000,m&lt;=100000,第一行总长度&lt;=100000。 题解这题当时拿到也没什么想法，跪了两天加上Dra大神的提示(大法师(DFS)序+AC自动机+线段树)还是站起来了。其实就是根据题目输入的特性来对AC自动机做一点优化首先，想到的可能就是这是一道很明显的多个模式串匹配多个文本串的题目，而且模式串和文本串集合是一样的。但是，如果暴力的一个个匹配每一个输入的串，复杂度可能要达到整个打印出的字符串总长度看上取似乎是10^5，但是如果一直输入一个串然后不停的PBPBPBPBP可能会达到10^9级别。(也可能没算对)所以我们需要进行一些改进。 从题目可知，只需按照输入数据模拟就可以成功的建出一棵(颗)Trie(da)树(baicai)这是简单的输入，接着我们造出fail数组顺便建一颗fail树。此时到了我们需要进行进一步处理的地方。由于题目输入的特性，Trie树是根据一步步的模拟进行的。所以如果一个字符串在另一个字符串中出现，那在模拟中也会走到这个字符串的结点。所以只需模拟栈，输入该字符进栈(即输入到Trie树中加入节点)就将贡献+1若出栈(即将这个字符串进行’B’操作)就将贡献-1(因为此时它已经不在了)等到需要结算时(正在进行’P’操作)，就将关于它的询问都进行一次查找。从AC自动机简单版求出现次数博客中可以知道将待求出现次数的结点所在fail树的子树(包括自己)贡献总和就可以求出出现次数了。看完上面的文字，肯定已经都想出来了–还有地方可以优化!正确对每个结点的贡献+1, -1(注意是在fail树中进行的操作)以及对fail树进行子树遍历结算时，不都是像极了单点修改区间查询吗？只不过时fail树看起来不满足区间修改而已。但是可以注意到，再一棵树的DFS序中，一个结点和它的子树肯定是在一段连续区间上的，所以我们可以将fail树转化成DFS序进行修改和查询。然后再思考一遍，理清头绪，就可以开始打了。 吐槽蒟蒻不禁吐槽程序真难打。我一开始还以为进行’B’操作时需要删掉在Trie树上的点，结果还用个stack装结构体来读入。结果Dra后来说不用删点。但我还是不太知道为什么不用(蒟蒻太水还没想出来) 程序 (可能还比较清晰吧)123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171#include &lt;cstdio&gt;#include &lt;stack&gt;#include &lt;cstring&gt;#include &lt;queue&gt;#define MAX_N 100100using namespace std;struct str &#123; char s; bool book;&#125;;stack&lt;str&gt; stk;char t[MAX_N];int ch[MAX_N][30], sz = 1, fa[MAX_N];int strin[MAX_N], strsum;int M;int head[MAX_N], to[MAX_N], nxt[MAX_N], ttop;int fail[MAX_N];int fail_head[MAX_N], fail_to[MAX_N], fail_nxt[MAX_N], x[MAX_N], failtop;int totans[MAX_N];int bit[MAX_N * 2];int idx (char c) &#123;return c - 'a';&#125;void Read () &#123; int len_ = strlen(t); int u = 0; for (int i = 0;i &lt; len_; ++i) &#123; int c = idx(t[i]); if (t[i] == 'P') &#123; stk.top().book = true; strin[++strsum] = u; &#125; else if (t[i] == 'B') &#123; if (stk.top().book == true) &#123; //当前删除的是合法的点，不用烧边，把正确标记移至下一个字符 stk.pop(); if (!stk.empty()) stk.top().book = true; u = fa[u]; //向上到上一层点 &#125; else &#123; ch[fa[u]][stk.top().s - 'a'] = 0; //它的上一层向它无边(烧边) stk.pop(); u = fa[u]; sz--; //这条边不算数 &#125; &#125; else &#123; if (ch[u][c]) &#123;u = ch[u][c];continue;&#125; ch[u][c] = sz++; //加一条边 fa[sz - 1] = u; //记录它的上层节点编号，以便于删除时向上 stk.push((str)&#123;t[i], false&#125;); //将当前字符串压入栈中，初始值为false因为当时还没有P是一个不合法的值 u = ch[u][c]; //跳到下一个点 &#125; &#125;&#125;void fail_AddEdge (int _from_, int _to_) &#123; fail_nxt[++failtop] = fail_head[_from_]; fail_head[_from_] = failtop; fail_to[failtop] = _to_; &#125;void getfail () &#123; queue&lt;int&gt; q; fail[0] = 0; for (int i = 0;i &lt; 26; ++i) if (ch[0][i]) &#123; //AddEdge fail_AddEdge(0, ch[0][i]); q.push(ch[0][i]); &#125; while (!q.empty()) &#123; int u = q.front(); q.pop(); for (int c = 0;c &lt; 26; ++c) &#123; if (!ch[u][c]) continue; q.push(ch[u][c]); int v = fail[u]; while (v &amp;&amp; !ch[v][c]) v = fail[v]; fail[ch[u][c]] = ch[v][c]; //AddEdge int _from_ = ch[v][c], _to_ = ch[u][c]; fail_AddEdge(_from_, _to_); &#125; &#125;&#125;int tot;int l[MAX_N], r[MAX_N], order_[MAX_N], iorder_[MAX_N];void get_dfs_order (int x, int fa) &#123; l[x] = ++tot; order_[tot] = x; iorder_[x] = tot; for (int now = fail_head[x]; now; now = fail_nxt[now]) &#123; int _to = fail_to[now]; if (_to == fa) continue; get_dfs_order(_to, x); &#125; r[x] = tot;&#125;int bit_find (int i) &#123; int s = 0; while (i &gt; 0) &#123; s += bit[i]; i -= i &amp; -i; &#125; return s;&#125;void bit_add (int i, int x) &#123; while (i &lt;= tot) &#123; bit[i] += x; i += i &amp; -i; &#125;&#125;void rebuild () &#123; int pt = 0, u = 0; int len_ = strlen(t); for (int i = 0;i &lt; len_; ++i) &#123; int c = idx(t[i]); if (t[i] == 'P') &#123; ++pt; for (int i = head[pt]; i; i = nxt[i]) &#123; int now = strin[to[i]]; totans[x[i]] = bit_find (r[now]) - bit_find(l[now] - 1); &#125; &#125; else if (t[i] == 'B') &#123; bit_add(l[u], -1); u = fa[u]; &#125; else &#123; bit_add(l[ch[u][c]], 1); u = ch[u][c]; &#125; &#125;&#125;int main () &#123; scanf("%s", t); Read(); getfail(); scanf("%d", &amp;M); int _book_[MAX_N]; memset(_book_, 0, sizeof(_book_)); for (int i = 1;i &lt;= M; ++i) &#123; int a, b; scanf("%d%d", &amp;a, &amp;b); _book_[b] = 1; nxt[++ttop] = head[b]; head[b] = ttop; to[ttop] = a; x[ttop] = i; &#125; get_dfs_order(0, 0); rebuild(); for (int i = 1;i &lt;= M; ++i) printf("%d\n", totans[i]); return 0;&#125;]]></content>
@@ -15,7 +24,7 @@
   <entry>
     <title><![CDATA[「LOJ'Hello2018'-A」奴隶主的游戏]]></title>
     <url>%2F2018%2F01%2F03%2F%E3%80%8CLOJ-Hello2018-A%E3%80%8D%E5%A5%B4%E9%9A%B6%E4%B8%BB%E7%9A%84%E6%B8%B8%E6%88%8F%2F</url>
-    <content type="text"><![CDATA[题目题目描述1奴隶主家的公告：欢迎和我玩数独游戏，赢了你将获得万贯家财，输了 …… 而你正好看到这则公告 数独游戏的规则是这样的： 初始的时候有一个 n 阶数独（n 阶数独即边长为 n^2 的分成 n^2 个 n×n 区域的方格，下图为 4 阶数独），并且已经填了 k 个格子，现在两个人轮流在空格子中填数（当然是你先填啦），每次填完需保证局面合法（合法即要求每个人填完后同行同列同区域不能出现相同数字并且填的数字是 [1,n^2] 中的整数），能填必须填，不能填者输。 现在你要确定你（先手）是否有必胜策略，以免鲁莽输掉游戏沦为奴隶。 输入格式第一行一个整数 T 表示有 T 组数据。 对于每组数据第一行两个整数 n,k。 接下来有 kkk 行，每行三个整数 x,y,z 表示第 x 行 y 列填了数字 z。保证填的格子不重复，且已经填好的数字合法。 输出格式对于每组数据输出一个字符串：YES 表示有必胜策略，NO 表示没有必胜策略。 样例注意：样例中有 1≤n&lt;4 的情况，这只是为了便于解释样例及说明游戏规则，在实际的测试数据中保证 n≥4。 样例输入 111 0 样例输出 1YES 样例解释 1初始局面是一个 1x1的方块并且没有填，你只要填上 1 就可获胜。 样例输入 214 29 13 19 16 2 样例输出 2NO 样例解释 2输入即为上图填了 1 和 2 后的局面。 数据范围与提示对于所有数据，4​≤n≤5, 0≤k≤2, 1≤T≤20, 1≤x, y, z≤n^2。 保证填的格子不重复，且已经填好的数字合法。 题解其实题目很简单， 找规律就可以以下就找出来。你想想自己应该怎么样才能赢，也就是想想最优策略。在一个2x2 x 2x2 的小方格中和自己玩了一盘后，我大概知道怎么样才能获胜了。可以把这个数独想象成一个棋盘。我们一定可以找到棋盘的中心，对方每下一步，你就下一步相对于棋盘的中心与他所下棋对称的。这样只需考虑谁最后会下完整盘棋的最后一个子，他就赢了。然后只要考虑棋盘中可下空位的奇偶性。代码也就出来了，非常短。(十足的水题)123456789101112131415161718192021#include &lt;cstdio&gt;#include &lt;iostream&gt;using namespace std;int T, N, K;int main () &#123; scanf("%d", &amp;T); while (T--) &#123; scanf("%d%d", &amp;N, &amp;K); int sum = N * N * N * N; int x, y, z; for (int i = 1;i &lt;= K; ++i) &#123; scanf("%d%d%d", &amp;x, &amp;y, &amp;z); &#125; int res = sum - K; if (res % 2 == 0) printf("NO\n"); else printf("YES\n"); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[题目题目描述奴隶主家的公告：欢迎和我玩数独游戏，赢了你将获得万贯家财，输了 …… 而你正好看到这则公告 数独游戏的规则是这样的： 初始的时候有一个 n 阶数独（n 阶数独即边长为 n^2 的分成 n^2 个 n×n 区域的方格，下图为 4 阶数独），并且已经填了 k 个格子，现在两个人轮流在空格子中填数（当然是你先填啦），每次填完需保证局面合法（合法即要求每个人填完后同行同列同区域不能出现相同数字并且填的数字是 [1,n^2] 中的整数），能填必须填，不能填者输。 现在你要确定你（先手）是否有必胜策略，以免鲁莽输掉游戏沦为奴隶。 输入格式第一行一个整数 T 表示有 T 组数据。 对于每组数据第一行两个整数 n,k。 接下来有 kkk 行，每行三个整数 x,y,z 表示第 x 行 y 列填了数字 z。保证填的格子不重复，且已经填好的数字合法。 输出格式对于每组数据输出一个字符串：YES 表示有必胜策略，NO 表示没有必胜策略。 样例注意：样例中有 1≤n&lt;4 的情况，这只是为了便于解释样例及说明游戏规则，在实际的测试数据中保证 n≥4。 样例输入 111 0 样例输出 1YES 样例解释 1初始局面是一个 1x1的方块并且没有填，你只要填上 1 就可获胜。 样例输入 214 29 13 19 16 2 样例输出 2NO 样例解释 2输入即为上图填了 1 和 2 后的局面。 数据范围与提示对于所有数据，4​≤n≤5, 0≤k≤2, 1≤T≤20, 1≤x, y, z≤n^2。 保证填的格子不重复，且已经填好的数字合法。 题解其实题目很简单， 找规律就可以以下就找出来。你想想自己应该怎么样才能赢，也就是想想最优策略。在一个2x2 x 2x2 的小方格中和自己玩了一盘后，我大概知道怎么样才能获胜了。可以把这个数独想象成一个棋盘。我们一定可以找到棋盘的中心，对方每下一步，你就下一步相对于棋盘的中心与他所下棋对称的。这样只需考虑谁最后会下完整盘棋的最后一个子，他就赢了。然后只要考虑棋盘中可下空位的奇偶性。代码也就出来了，非常短。(十足的水题)123456789101112131415161718192021#include &lt;cstdio&gt;#include &lt;iostream&gt;using namespace std;int T, N, K;int main () &#123; scanf("%d", &amp;T); while (T--) &#123; scanf("%d%d", &amp;N, &amp;K); int sum = N * N * N * N; int x, y, z; for (int i = 1;i &lt;= K; ++i) &#123; scanf("%d%d%d", &amp;x, &amp;y, &amp;z); &#125; int res = sum - K; if (res % 2 == 0) printf("NO\n"); else printf("YES\n"); &#125; return 0;&#125;]]></content>
       <categories>
         <category>LOJ</category>
         <category>数学</category>
@@ -73,8 +82,8 @@
         <category>模板</category>
       </categories>
       <tags>
-        <tag>线段树</tag>
         <tag>模板</tag>
+        <tag>线段树</tag>
         <tag>POJ</tag>
       </tags>
   </entry>
@@ -87,9 +96,9 @@
         <category>模板</category>
       </categories>
       <tags>
+        <tag>模板</tag>
         <tag>线段树</tag>
         <tag>HDU</tag>
-        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -101,9 +110,9 @@
         <category>模板</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>网络流</tag>
         <tag>洛谷</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -114,8 +123,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>高斯消元</tag>
         <tag>POJ</tag>
+        <tag>高斯消元</tag>
       </tags>
   </entry>
   <entry>
@@ -127,8 +136,8 @@
         <category>模板</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>洛谷</tag>
+        <tag>模板</tag>
         <tag>高斯消元</tag>
       </tags>
   </entry>

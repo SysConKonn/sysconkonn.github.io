@@ -293,6 +293,138 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/「HNOI2002」营业额统计-Treap模板题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sys_Con">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Konnyaku Sys_Con">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/11/「HNOI2002」营业额统计-Treap模板题/" itemprop="url">「HNOI2002」营业额统计 Treap模板题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T15:40:12+08:00">
+                2018-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="原题戳我"><a href="#原题戳我" class="headerlink" title="原题戳我"></a><a href="https://www.luogu.org/problemnew/show/2234" target="_blank" rel="noopener">原题戳我</a></h3><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Tiger最近被公司升任为营业部经理，他上任后接受公司交给的第一项任务便是统计并分析公司成立以来的营业情况。</p>
+<p>Tiger拿出了公司的账本，账本上记录了公司成立以来每天的营业额。分析营业情况是一项相当复杂的工作。由于节假日，大减价或者是其他情况的时候，营业额会出现一定的波动，当然一定的波动是能够接受的，但是在某些时候营业额突变得很高或是很低，这就证明公司此时的经营状况出现了问题。经济管理学上定义了一种最小波动值来衡量这种情况：</p>
+<p>当最小波动值越大时，就说明营业情况越不稳定。</p>
+<p>而分析整个公司的从成立到现在营业情况是否稳定，只需要把每一天的最小波动值加起来就可以了。你的任务就是编写一个程序帮助Tiger来计算这一个值。</p>
+<p>第一天的最小波动值为第一天的营业额。</p>
+<p>该天的最小波动值=min{|该天以前某一天的营业额-该天营业额|}。</p>
+<h3 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h3><h4 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h4><p>第一行为正整数n（n&lt;=32767） ，表示该公司从成立一直到现在的天数，接下来的n行每行有一个整数ai(|ai|&lt;=1000000) ，表示第i天公司的营业额，可能存在负数。</p>
+<h4 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h4><h3 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h3><h4 id="输入样例-1："><a href="#输入样例-1：" class="headerlink" title="输入样例#1："></a>输入样例#1：</h4><p>6<br>5<br>1<br>2<br>5<br>4<br>6</p>
+<h4 id="输出样例-1：-复制"><a href="#输出样例-1：-复制" class="headerlink" title="输出样例#1： 复制"></a>输出样例#1： 复制</h4><p>12</p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>结果说明：5+|1-5|+|2-1|+|5-5|+|4-5|+|6-5|=5+4+1+0+1+1=12</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>一道十分裸的Treap，每次插入一个点之前求出它的前驱和后继，取和它距离较近的算出最小波动值即可。<br>前驱 : 当前序列中小于该数的最大数<br>后继 : 当前序列中大于该数的最小树</p>
+<p>虽说时Treap模板，但还是要知道Treap怎么打才行吧。<br>所以就简单的介绍一下:<br>Treap其实是BST(二叉搜索树)的平衡版本。<br>BST:保证每个结点的左子树所有结点都比它小，右子树上所有结点都比它大的树。<br>或者可以看<a href="https://zh.wikipedia.org/zh-cn/%E4%BA%8C%E5%85%83%E6%90%9C%E5%B0%8B%E6%A8%B9" target="_blank" rel="noopener">wikipedia</a>的解释。<br>但是仔细一想，是不是很多时候，都会出现，左子树一大串，几乎已经接近一条长链，但是右子树还只有一个点的情况呢？<br>此时就应该将它平衡，如何平衡。<br>可以参考<a href="sysconkonn.github.io/ok平衡树20180107.pdf">周老师的pdf</a>,也可以自己到网上查一下。<br>好了就是这么简单。</p>
+<h3 id="为数不多的没用指针写的Treap"><a href="#为数不多的没用指针写的Treap" class="headerlink" title="为数不多的没用指针写的Treap"></a>为数不多的没用指针写的Treap</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_N 50010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 214748647</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MOD 999999</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">point</span> &#123;</span></span><br><span class="line">  <span class="keyword">int</span> w, rd, sz, re, l, r;</span><br><span class="line">&#125;p[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> root, ans, tot;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> N, num[MAX_N], sum, pre_, nxt_;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">rand_</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a, b;</span><br><span class="line">  <span class="comment">//return a * b * (a - b) * (a + b)  % MOD;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span> <span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;p[x].sz = p[p[x].l].sz + p[p[x].r].sz + p[x].re;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">r_rot</span> <span class="params">(<span class="keyword">int</span> &amp;x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> y = p[x].r;</span><br><span class="line">  p[x].r = p[y].l;</span><br><span class="line">  p[y].l = x;</span><br><span class="line">  p[y].sz = p[x].sz;</span><br><span class="line">  up(x);</span><br><span class="line">  x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">l_rot</span> <span class="params">(<span class="keyword">int</span> &amp;x)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> y = p[x].l;</span><br><span class="line">  p[x].l = p[y].r;</span><br><span class="line">  p[y].r = x;</span><br><span class="line">  p[y].sz = p[x].sz;</span><br><span class="line">  up(x);</span><br><span class="line">  x = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ins</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x, <span class="keyword">int</span>&amp; k)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (k == <span class="number">0</span>) &#123;</span><br><span class="line">    tot++;</span><br><span class="line">    k = tot;</span><br><span class="line">    p[k].w = x;</span><br><span class="line">    p[k].sz = p[k].re = <span class="number">1</span>;</span><br><span class="line">    p[k].rd = rand();</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  p[k].sz++;</span><br><span class="line">  <span class="keyword">if</span> (p[k].w == x) p[k].re++;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; p[k].w) &#123;</span><br><span class="line">      ins(x, p[k].r);</span><br><span class="line">      <span class="keyword">if</span> (p[k].rd &gt; p[p[k].r].rd) r_rot(k);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">      ins(x, p[k].l);</span><br><span class="line">      <span class="keyword">if</span> (p[k].rd &gt; p[p[k].l].rd) l_rot(k);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pre</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (k == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (p[k].w &lt;= x) &#123;</span><br><span class="line">    ans = k;</span><br><span class="line">    pre(x, p[k].r);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> pre(x, p[k].l);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">nxt</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> x, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (k == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">if</span> (p[k].w &gt;= x) &#123;</span><br><span class="line">    ans = k;</span><br><span class="line">    nxt(x, p[k].l);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span> nxt(x, p[k].r);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  srand(<span class="number">0</span>);</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;N);</span><br><span class="line">  p[<span class="number">0</span>].w = INF;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N; ++i) &#123;</span><br><span class="line">  	<span class="built_in">scanf</span>(<span class="string">"%lld"</span>, &amp;num[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  sum = num[<span class="number">1</span>];</span><br><span class="line">  ins(num[<span class="number">1</span>], root);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>;i &lt;= N; ++i) &#123;</span><br><span class="line">  	pre(num[i], root);</span><br><span class="line">    <span class="keyword">int</span> x = ans;</span><br><span class="line">  	nxt(num[i], root);</span><br><span class="line">    sum += (<span class="keyword">long</span> <span class="keyword">long</span>)min(<span class="built_in">abs</span>(num[i] - p[x].w), <span class="built_in">abs</span>(p[ans].w - num[i]));</span><br><span class="line">  	ins(num[i], root);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, sum);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">cpp</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/07/「NOI2011」阿狸的打字机/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -547,7 +679,7 @@
 
       
         
-          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">奴隶主家的公告：欢迎和我玩数独游戏，赢了你将获得万贯家财，输了 …… 而你正好看到这则公告</span><br></pre></td></tr></table></figure>
+          <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p><code>奴隶主家的公告：欢迎和我玩数独游戏，赢了你将获得万贯家财，输了 …… 而你正好看到这则公告</code></p>
 <p>数独游戏的规则是这样的：</p>
 <p>初始的时候有一个 n 阶数独（n 阶数独即边长为 n^2 的分成 n^2 个 n×n 区域的方格，下图为 4 阶数独），并且已经填了 k 个格子，现在两个人轮流在空格子中填数（当然是你先填啦），每次填完需保证局面合法（合法即要求每个人填完后同行同列同区域不能出现相同数字并且填的数字是 [1,n^2] 中的整数），能填必须填，不能填者输。</p>
 <p>现在你要确定你（先手）是否有必胜策略，以免鲁莽输掉游戏沦为奴隶。</p>
@@ -1689,168 +1821,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/29/高斯消元模板题luogu3389题解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sys_Con">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Konnyaku Sys_Con">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/29/高斯消元模板题luogu3389题解/" itemprop="url">高斯消元模板题luogu3389题解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-29T14:54:11+08:00">
-                2017-12-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数学/" itemprop="url" rel="index">
-                    <span itemprop="name">数学</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数学/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h2><p><strong>Gauss消元</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个线性方程组，对其求解</p>
-<h3 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h3><h4 id="输入格式："><a href="#输入格式：" class="headerlink" title="输入格式："></a>输入格式：</h4><p>第一行，一个正整数 nnn</p>
-<p>第二至 n+1行，每行 n+1 个整数，为a1, a2 … an和 b，代表一组方程。</p>
-<h4 id="输出格式："><a href="#输出格式：" class="headerlink" title="输出格式："></a>输出格式：</h4><p>共n行，每行一个数，第 i行为x_i （保留2位小数）</p>
-<p>如果不存在唯一解，在第一行输出”No Solution”.</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/29/高斯消元模板题luogu3389题解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1901,7 +1871,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1923,7 +1893,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
