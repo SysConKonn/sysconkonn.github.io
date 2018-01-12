@@ -1827,7 +1827,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #5796ff;
+  background: #ff7d82;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2909,4 +2909,11 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+body {
+  background-image: url("../images/bckg.jpg");
+  background-position: left top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
