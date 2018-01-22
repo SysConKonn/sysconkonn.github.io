@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="模板,字符串,回文串," />
 
 
 
@@ -79,13 +79,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Konnyaku Sys_Con">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+<meta name="description" content="原题戳我Manacher(马拉车)算法是用来求最长回文子串的。其实原理并不是很难，就是对暴力(Brute_Force)的优化。 问题描述最长回文子串问题，顾名思义是要求给定字符串的最长回文子串。回文串的定义就是以中心点为轴，两边的字符对称分布。">
+<meta name="keywords" content="模板,字符串,回文串">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「Manacher求最长回文子串」">
+<meta property="og:url" content="http://yoursite.com/2018/01/22/「Manacher求最长回文串」/index.html">
 <meta property="og:site_name" content="Konnyaku Sys_Con">
+<meta property="og:description" content="原题戳我Manacher(马拉车)算法是用来求最长回文子串的。其实原理并不是很难，就是对暴力(Brute_Force)的优化。 问题描述最长回文子串问题，顾名思义是要求给定字符串的最长回文子串。回文串的定义就是以中心点为轴，两边的字符对称分布。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/images/回文子串/1.png">
+<meta property="og:image" content="http://yoursite.com/images/回文子串/2.png">
+<meta property="og:image" content="http://yoursite.com/images/回文子串/3.png">
+<meta property="og:image" content="http://yoursite.com/images/回文子串/4.png">
+<meta property="og:image" content="http://yoursite.com/images/回文子串/5.png">
+<meta property="og:updated_time" content="2018-01-22T11:29:38.946Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Konnyaku Sys_Con">
+<meta name="twitter:title" content="「Manacher求最长回文子串」">
+<meta name="twitter:description" content="原题戳我Manacher(马拉车)算法是用来求最长回文子串的。其实原理并不是很难，就是对暴力(Brute_Force)的优化。 问题描述最长回文子串问题，顾名思义是要求给定字符串的最长回文子串。回文串的定义就是以中心点为轴，两边的字符对称分布。">
+<meta name="twitter:image" content="http://yoursite.com/images/回文子串/1.png">
 
 
 
@@ -115,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/22/「Manacher求最长回文串」/"/>
 
 
 
 
 
-  <title>归档 | Konnyaku Sys_Con</title>
+  <title>「Manacher求最长回文子串」 | Konnyaku Sys_Con</title>
   
 
 
@@ -140,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -282,416 +293,186 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      <span class="archive-page-counter">
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/「Manacher求最长回文串」/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sys_Con">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Konnyaku Sys_Con">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">「Manacher求最长回文子串」</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T18:50:13+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 13 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/22/「Manacher求最长回文串」/" itemprop="url">
-              
-                <span itemprop="name">「Manacher求最长回文子串」</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-22T18:50:13+08:00"
-              content="2018-01-22" >
-          01-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/11/「HNOI2002」营业额统计-Treap模板题/" itemprop="url">
-              
-                <span itemprop="name">「HNOI2002」营业额统计 Treap模板题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-11T15:40:12+08:00"
-              content="2018-01-11" >
-          01-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/07/「NOI2011」阿狸的打字机/" itemprop="url">
-              
-                <span itemprop="name">「NOI2011」阿狸的打字机</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-07T18:50:18+08:00"
-              content="2018-01-07" >
-          01-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/01/03/「LOJ-Hello2018-A」奴隶主的游戏/" itemprop="url">
-              
-                <span itemprop="name">「LOJ'Hello2018'-A」奴隶主的游戏</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-03T10:41:33+08:00"
-              content="2018-01-03" >
-          01-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
+            
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2017">2017</h1>
-          </div>
-        
-        
 
-        
+          
+          
+             <span id="/2018/01/22/「Manacher求最长回文串」/" class="leancloud_visitors" data-flag-title="「Manacher求最长回文子串」">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/30/luogu3808AC自动机简单版/" itemprop="url">
-              
-                <span itemprop="name">luogu3808AC自动机简单版</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-30T16:45:25+08:00"
-              content="2017-12-30" >
-          12-30
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/30/luogu3976AC自动机加强版/" itemprop="url">
-              
-                <span itemprop="name">luogu3976AC自动机加强版</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-30T16:42:21+08:00"
-              content="2017-12-30" >
-          12-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/浅谈KMP算法/" itemprop="url">
-              
-                <span itemprop="name">浅谈KMP算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T19:47:59+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/poj3468区间修改区间查询模板题/" itemprop="url">
-              
-                <span itemprop="name">poj3468区间修改区间查询模板题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T15:48:51+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        <p><a href="https://www.luogu.org/problemnew/show/3805" target="_blank" rel="noopener">原题戳我</a><br>Manacher(马拉车)算法是用来求最长回文子串的。<br>其实原理并不是很难，就是对暴力(Brute_Force)的优化。</p>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>最长回文子串问题，顾名思义是要求给定字符串的最长回文子串。<br>回文串的定义就是以中心点为轴，两边的字符对称分布。</p>
+<a id="more"></a>
+<p>首先，讨论一下暴力算法。</p>
+<h3 id="Brute-Force算法"><a href="#Brute-Force算法" class="headerlink" title="Brute_Force算法"></a>Brute_Force算法</h3><p>对于最长回文子串问题，最简单粗暴的办法是：找到字符串的所有子串，遍历每一个子串以验证它们是否为回文串。一个子串由子串的起点和终点确定，因此对于一个长度为n的字符串，共有$n^2$个子串。这些子串的平均长度大约是$\frac{n}{2}$，因此这个解法的时间复杂度是$O(n^3)$。</p>
+<h3 id="来想一下简单优化方法"><a href="#来想一下简单优化方法" class="headerlink" title="来想一下简单优化方法"></a>来想一下简单优化方法</h3><p>显然所有的回文串都是对称的。长度为奇数回文串以最中间字符的位置为对称轴左右对称，而长度为偶数的回文串的对称轴在中间两个字符之间的空隙。可否利用这种对称性来提高算法效率呢？答案是肯定的。我们知道整个字符串中的所有字符，以及字符间的空隙，都可能是某个回文子串的对称轴位置。可以遍历这些位置，在每个位置上同时向左和向右扩展，直到左右两边的字符不同，或者达到边界。对于一个长度为n的字符串，这样的位置一共有n+n-1=2n-1个，在每个位置上平均大约要进行n/4次字符比较，于是此算法的时间复杂度是O(n^2)。</p>
+<h3 id="最后就是看起来很厉害的Manacher算法"><a href="#最后就是看起来很厉害的Manacher算法" class="headerlink" title="最后就是看起来很厉害的Manacher算法"></a>最后就是看起来很厉害的Manacher算法</h3><p>对于一个比较长的字符串，O(n^2)的时间复杂度是难以接受的。<br>还能再优化吗？</p>
+<p>先来看看解法2存在的缺陷。</p>
+<ul>
+<li>由于回文串长度的奇偶性造成了不同性质的对称轴位置，解法2要对两种情况分别处理；</li>
+<li>很多子串被重复多次访问，造成较差的时间效率。</li>
+</ul>
+<p><strong>首先</strong>我们应该解决长度奇偶性的问题，用$Brute-Force$方法的话，长度对称轴位置并不是一个很好确定的东西，是吧。</p>
+<p>但是，<del>通过小学数学可以知道，</del>奇数加一为偶数，偶数加一为奇数，如果串长为奇数，就好处理得多了。<br>所以就在串的间隙中插入一个不可能在题目中出现的字符(比如说$#$)，注意收首尾也要加上，此时加上的$#$个数为原串长加一，然后再加上原串长，一定为一个奇数加偶数的结果，就是一个奇数了，此时串长为奇数，对称轴好处理多了。<br>举个例子:<br><code>aba</code><br>加上之后变成了:<br><code>#a#b#a#</code></p>
+<p><strong>然后</strong>我们应该解决重复访问拉高复杂度的问题。<br>我们把一个回文串中最左或最右位置的字符与其对称轴的距离称为回文半径。Manacher定义了一个回文半径数组RL，用RL[i]表示以第i个字符为对称轴的回文串的回文半径。我们一般对字符串从左往右处理，因此这里定义RL[i]为第i个字符为对称轴的回文串的最右一个字符与字符i的距离。对于上面插入分隔符之后的两个串，可以得到RL数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">char:    # a # b # a #</span><br><span class="line"> RL :    1 2 1 4 1 2 1</span><br><span class="line">RL-1:    0 1 0 3 0 1 0</span><br><span class="line">  i :    0 1 2 3 4 5 6</span><br><span class="line"></span><br><span class="line">char:    # a # b # b # a #</span><br><span class="line"> RL :    1 2 1 2 5 2 1 2 1</span><br><span class="line">RL-1:    0 1 0 1 4 1 0 1 0</span><br><span class="line">  i :    0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure></p>
+<p>通过观察可以发现，其实<code>RL[i] - 1</code>才是真正的回文串长</p>
+<p>于是问题变成了，怎样高效地求的RL数组。基本思路是利用回文串的对称性，扩展回文串。</p>
+<p>我们再引入一个辅助变量<code>MaxRight</code>，表示当前访问到的所有回文子串，所能触及的最右一个字符的位置。另外还要记录下<code>MaxRight</code>对应的回文串的对称轴所在的位置，记为<code>pos</code>，它们的位置关系如下。<br><img src="/images/回文子串/1.png" alt="位置关系"></p>
+<ol>
+<li>当<code>i</code>在<code>MaxRight</code>左边<br>可以用下图描述:<br><img src="/images/回文子串/2.png" alt=""><br>我们知道，图中两个红色块之间（包括红色块）的串是回文的；并且以i为对称轴的回文串，是与红色块间的回文串有所重叠的。我们找到<code>i</code>关于<code>pos</code>的对称位置<code>j</code>，这个<code>j</code>对应的<code>RL[j]</code>我们是已经算过的。根据回文串的对称性，以<code>i</code>为对称轴的回文串和以<code>j</code>为对称轴的回文串，有一部分是相同的。这里又有两种细分的情况。<br>(1)以<code>j</code>为对称轴的回文串比较短，短到像下图这样。<br><img src="/images/回文子串/3.png" alt=""><br>这时我们知道<code>RL[i]</code>至少不会小于<code>RL[j]</code>，并且已经知道了部分的以i为中心的回文串，于是可以令<code>RL[i]=RL[j]</code>。但是以i为对称轴的回文串可能实际上更长，因此我们试着以<code>i</code>为对称轴，继续往左右两边扩展，直到左右两边字符不同，或者到达边界。<br>(2)以<code>j</code>为对称轴的回文串很长，这么长：<br><img src="/images/回文子串/4.png" alt=""><br>这时，我们只能确定，两条蓝线之间的部分（即不超过<code>MaxRight</code>的部分）是回文的，于是从这个长度开始，尝试以<code>i</code>为中心向左右两边扩展，直到左右两边字符不同，或者到达边界。</li>
+</ol>
+<p>不论以上哪种情况，之后都要尝试更新<code>MaxRight</code>和<code>pos</code>，因为有可能得到更大的<code>MaxRight</code>。</p>
+<p>具体操作如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">令RL[i]=min(RL[2*pos-i], MaxRight-i)</span><br><span class="line">以i为中心扩展回文串，直到左右两边字符不同，或者到达边界。</span><br><span class="line">更新MaxRight和pos</span><br></pre></td></tr></table></figure></p>
+<p>2.当<code>i</code>在<code>MaxRight</code>的右边<br><img src="/images/回文子串/5.png" alt=""><br>遇到这种情况，说明以<code>i</code>为对称轴的回文串还没有任何一个部分被访问过，于是只能从i的左右两边开始尝试扩展了，当左右两边字符不同，或者到达字符串边界时停止。然后更新<code>MaxRight</code>和<code>pos</code>。</p>
+<h3 id="最后的最后的最后"><a href="#最后的最后的最后" class="headerlink" title="最后的最后的最后"></a>最后的最后的最后</h3><p>感谢 : <a href="https://segmentfault.com/a/1190000003914228" target="_blank" rel="noopener">很有用的网站</a><br><del>看完后不要吐槽我</del></p>
+<h3 id="最后的最后-程序"><a href="#最后的最后-程序" class="headerlink" title="最后的最后 程序"></a>最后的最后 程序</h3> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX_L 50000010</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 1 &lt;&lt; 31 - 1</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> s[MAX_L], s2[MAX_L];</span><br><span class="line"><span class="keyword">int</span> rl[MAX_L], maxright, pos;</span><br><span class="line"><span class="keyword">int</span> N, tot = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> res;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s2 + <span class="number">1</span>);</span><br><span class="line">  N = <span class="built_in">strlen</span>(s2 + <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= N;i++, tot += <span class="number">2</span>)</span><br><span class="line">    s[tot - <span class="number">1</span>] = <span class="string">'#'</span>, s[tot] = s2[i];</span><br><span class="line">  s[--tot] = <span class="string">'#'</span>;</span><br><span class="line"></span><br><span class="line">  maxright = pos = <span class="number">0</span>;</span><br><span class="line">  fill(rl, rl + tot + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>;i &lt;= tot; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; maxright) rl[i] = min(maxright - i, rl[pos * <span class="number">2</span> - i]);</span><br><span class="line">    <span class="keyword">else</span> rl[i] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (i - rl[i] &gt;= <span class="number">0</span> &amp;&amp; i + rl[i] &lt;= tot &amp;&amp; (s[i + rl[i]] == s[i - rl[i]])) rl[i]++;</span><br><span class="line">    <span class="keyword">if</span> (rl[i] + i - <span class="number">1</span>&gt; maxright) &#123;</span><br><span class="line">      maxright = rl[i] + i - <span class="number">1</span>;</span><br><span class="line">      pos = i;</span><br><span class="line">    &#125;</span><br><span class="line">    res = max(res, rl[i]);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, res - <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/HDU1754I-Hate-It题解-线段树模板题/" itemprop="url">
-              
-                <span itemprop="name">HDU1754I Hate It题解-线段树模板题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T15:27:50+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2017/12/29/luogu3376最大流模板题/" itemprop="url">
-              
-                <span itemprop="name">luogu3376最大流模板题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T15:23:38+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/模板/" rel="tag"># 模板</a>
+          
+            <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+            <a href="/tags/回文串/" rel="tag"># 回文串</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/11/「HNOI2002」营业额统计-Treap模板题/" rel="next" title="「HNOI2002」营业额统计 Treap模板题">
+                <i class="fa fa-chevron-left"></i> 「HNOI2002」营业额统计 Treap模板题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -699,6 +480,12 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="uyan_frame"></div>
+    </div>
+  
+
 
         </div>
         
@@ -719,8 +506,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -849,6 +645,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Brute-Force算法"><span class="nav-number">2.</span> <span class="nav-text">Brute_Force算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#来想一下简单优化方法"><span class="nav-number">3.</span> <span class="nav-text">来想一下简单优化方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后就是看起来很厉害的Manacher算法"><span class="nav-number">4.</span> <span class="nav-text">最后就是看起来很厉害的Manacher算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后的最后的最后"><span class="nav-number">5.</span> <span class="nav-text">最后的最后的最后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后的最后-程序"><span class="nav-number">6.</span> <span class="nav-text">最后的最后 程序</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -972,6 +784,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -997,6 +813,10 @@
   
     
 
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2154584"></script>
+      <!-- UY END -->
     
   
 
@@ -1480,26 +1300,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
