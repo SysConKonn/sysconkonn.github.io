@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://yoursite.com/images/回文子串/3.png">
 <meta property="og:image" content="http://yoursite.com/images/回文子串/4.png">
 <meta property="og:image" content="http://yoursite.com/images/回文子串/5.png">
-<meta property="og:updated_time" content="2018-01-24T09:10:18.208Z">
+<meta property="og:updated_time" content="2018-01-24T09:15:31.367Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="「Manacher求最长回文子串」">
 <meta name="twitter:description" content="原题戳我Manacher(马拉车)算法是用来求最长回文子串的。其实原理并不是很难，就是对暴力(Brute_Force)的优化。 问题描述最长回文子串问题，顾名思义是要求给定字符串的最长回文子串。回文串的定义就是以中心点为轴，两边的字符对称分布。">
@@ -389,16 +389,16 @@
 <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>最长回文子串问题，顾名思义是要求给定字符串的最长回文子串。<br>回文串的定义就是以中心点为轴，两边的字符对称分布。</p>
 <a id="more"></a>
 <p>首先，讨论一下暴力算法。</p>
-<h3 id="Brute-Force算法"><a href="#Brute-Force算法" class="headerlink" title="Brute_Force算法"></a>Brute_Force算法</h3><p>对于最长回文子串问题，最简单粗暴的办法是：找到字符串的所有子串，遍历每一个子串以验证它们是否为回文串。一个子串由子串的起点和终点确定，因此对于一个长度为$n$的字符串，共有$n^2$个子串。这些子串的平均长度大约是$\frac{n}{2}$，因此这个解法的时间复杂度是$O(n^3)$。</p>
-<h3 id="来想一下简单优化方法"><a href="#来想一下简单优化方法" class="headerlink" title="来想一下简单优化方法"></a>来想一下简单优化方法</h3><p>显然所有的回文串都是对称的。长度为奇数回文串以最中间字符的位置为对称轴左右对称，而长度为偶数的回文串的对称轴在中间两个字符之间的空隙。可否利用这种对称性来提高算法效率呢？答案是肯定的。我们知道整个字符串中的所有字符，以及字符间的空隙，都可能是某个回文子串的对称轴位置。可以遍历这些位置，在每个位置上同时向左和向右扩展，直到左右两边的字符不同，或者达到边界。对于一个长度为n的字符串，这样的位置一共有$n+n-1=2n-1$个，在每个位置上平均大约要进行$\frac{n}{4}$次字符比较，于是此算法的时间复杂度是$O(n^2)$。</p>
-<h3 id="最后就是看起来很厉害的Manacher算法"><a href="#最后就是看起来很厉害的Manacher算法" class="headerlink" title="最后就是看起来很厉害的Manacher算法"></a>最后就是看起来很厉害的Manacher算法</h3><p>对于一个比较长的字符串，$O(n^2)$的时间复杂度是难以接受的。<br>还能再优化吗？</p>
+<h3 id="Brute-Force算法"><a href="#Brute-Force算法" class="headerlink" title="Brute_Force算法"></a>Brute_Force算法</h3><p>对于最长回文子串问题，最简单粗暴的办法是：找到字符串的所有子串，遍历每一个子串以验证它们是否为回文串。一个子串由子串的起点和终点确定，因此对于一个长度为n的字符串，共有n^2个子串。这些子串的平均长度大约是n / 2，因此这个解法的时间复杂度是O(n^3)。</p>
+<h3 id="来想一下简单优化方法"><a href="#来想一下简单优化方法" class="headerlink" title="来想一下简单优化方法"></a>来想一下简单优化方法</h3><p>显然所有的回文串都是对称的。长度为奇数回文串以最中间字符的位置为对称轴左右对称，而长度为偶数的回文串的对称轴在中间两个字符之间的空隙。可否利用这种对称性来提高算法效率呢？答案是肯定的。我们知道整个字符串中的所有字符，以及字符间的空隙，都可能是某个回文子串的对称轴位置。可以遍历这些位置，在每个位置上同时向左和向右扩展，直到左右两边的字符不同，或者达到边界。对于一个长度为n的字符串，这样的位置一共有n+n-1=2n-1个，在每个位置上平均大约要进行\frac{n}{4}次字符比较，于是此算法的时间复杂度是O(n^2)。</p>
+<h3 id="最后就是看起来很厉害的Manacher算法"><a href="#最后就是看起来很厉害的Manacher算法" class="headerlink" title="最后就是看起来很厉害的Manacher算法"></a>最后就是看起来很厉害的Manacher算法</h3><p>对于一个比较长的字符串，O(n^2)的时间复杂度是难以接受的。<br>还能再优化吗？</p>
 <p>先来看看解法2存在的缺陷。</p>
 <ul>
 <li>由于回文串长度的奇偶性造成了不同性质的对称轴位置，解法2要对两种情况分别处理；</li>
 <li>很多子串被重复多次访问，造成较差的时间效率。</li>
 </ul>
-<p><strong>首先</strong>我们应该解决长度奇偶性的问题，用$Brute-Force$方法的话，长度对称轴位置并不是一个很好确定的东西，是吧。</p>
-<p>但是，<del>通过小学数学可以知道，</del>奇数加一为偶数，偶数加一为奇数，如果串长为奇数，就好处理得多了。<br>所以就在串的间隙中插入一个不可能在题目中出现的字符(比如说$#$)，注意收首尾也要加上，此时加上的$#$个数为原串长加一，然后再加上原串长，一定为一个奇数加偶数的结果，就是一个奇数了，此时串长为奇数，对称轴好处理多了。<br>举个例子:<br><code>aba</code><br>加上之后变成了:<br><code>#a#b#a#</code></p>
+<p><strong>首先</strong>我们应该解决长度奇偶性的问题，用Brute-Force方法的话，长度对称轴位置并不是一个很好确定的东西，是吧。</p>
+<p>但是，<del>通过小学数学可以知道，</del>奇数加一为偶数，偶数加一为奇数，如果串长为奇数，就好处理得多了。<br>所以就在串的间隙中插入一个不可能在题目中出现的字符(比如说#)，注意收首尾也要加上，此时加上的#个数为原串长加一，然后再加上原串长，一定为一个奇数加偶数的结果，就是一个奇数了，此时串长为奇数，对称轴好处理多了。<br>举个例子:<br><code>aba</code><br>加上之后变成了:<br><code>#a#b#a#</code></p>
 <p><strong>然后</strong>我们应该解决重复访问拉高复杂度的问题。<br>我们把一个回文串中最左或最右位置的字符与其对称轴的距离称为回文半径。Manacher定义了一个回文半径数组RL，用RL[i]表示以第i个字符为对称轴的回文串的回文半径。我们一般对字符串从左往右处理，因此这里定义RL[i]为第$i$个字符为对称轴的回文串的最右一个字符与字符i的距离。对于上面插入分隔符之后的两个串，可以得到RL数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">char:    # a # b # a #</span><br><span class="line"> RL :    1 2 1 4 1 2 1</span><br><span class="line">RL-1:    0 1 0 3 0 1 0</span><br><span class="line">  i :    0 1 2 3 4 5 6</span><br><span class="line"></span><br><span class="line">char:    # a # b # b # a #</span><br><span class="line"> RL :    1 2 1 2 5 2 1 2 1</span><br><span class="line">RL-1:    0 1 0 1 4 1 0 1 0</span><br><span class="line">  i :    0 1 2 3 4 5 6 7 8</span><br></pre></td></tr></table></figure></p>
 <p>通过观察可以发现，其实<code>RL[i] - 1</code>才是真正的回文串长</p>
 <p>于是问题变成了，怎样高效地求的RL数组。基本思路是利用回文串的对称性，扩展回文串。</p>
