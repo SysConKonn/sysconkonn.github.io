@@ -7,3 +7,11 @@
 ** jzpliner__report.pdf 对上文的总结。
 ** my.emacs 我的emacs配置文件
 ** LaTeX.pdf 一个LaTeX教程
+** 接下来是SDFZ集训（虽然我没去）的集训资料
+费用流模型选讲_刘昀.pdf \\
+构造题选讲 & 暴力搜索 深度搜索.pptx\\
+计数.pdf\\
+数论.pdf\\
+图论数学串讲.pdf\\
+网络流模型选讲.pdf\\
+
