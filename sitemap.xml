@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/note.html</loc>
+    
+    <lastmod>2018-02-07T13:47:15.674Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/01/22/%E3%80%8CManacher%E6%B1%82%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E4%B8%B2%E3%80%8D/</loc>
     
     <lastmod>2018-01-24T09:15:31.367Z</lastmod>
