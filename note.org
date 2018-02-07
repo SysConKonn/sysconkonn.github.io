@@ -4,6 +4,6 @@
 ** emacs-theme.el
 ** formula.pdf
 ** jzpliner.pdf 贾志鹏线性筛
-** jzpliner_report.pdf 对上文的总结。
+** jzpliner__report.pdf 对上文的总结。
 ** my.emacs 我的emacs配置文件
 ** LaTeX.pdf 一个LaTeX教程
