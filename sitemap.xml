@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2018-03-02T11:53:15.300Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/03/01/%E3%80%8CPOJ1741-Tree%E3%80%8D%E7%82%B9%E5%88%86%E6%B2%BB%E6%A8%A1%E6%9D%BF%E9%A2%98/</loc>
     
     <lastmod>2018-03-01T12:11:18.217Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://yoursite.com/warehouse/index.html</loc>
     
     <lastmod>2018-01-12T11:19:43.249Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/about/index.html</loc>
-    
-    <lastmod>2018-01-12T02:23:21.059Z</lastmod>
     
   </url>
   
