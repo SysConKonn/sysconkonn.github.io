@@ -90,17 +90,17 @@
 
 
 
-<meta name="description" content="note          /* @licstart  The following is the entire license notice for the JavaScript code in this tag.  Copyright (C) 2012-2013 Free Software Foundation, Inc.  The JavaScript code in this tag">
+<meta name="description" content="note          /* @licstart  The following is the entire license notice for the JavaScript code in this tag.  Copyright (C) 2012-2013 Free Software Foundation, Inc.  The JavaScript code in this ta">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Konnyaku Sys_Con">
 <meta property="og:url" content="http://yoursite.com/note.html">
 <meta property="og:site_name" content="Konnyaku Sys_Con">
-<meta property="og:description" content="note          /* @licstart  The following is the entire license notice for the JavaScript code in this tag.  Copyright (C) 2012-2013 Free Software Foundation, Inc.  The JavaScript code in this tag">
+<meta property="og:description" content="note          /* @licstart  The following is the entire license notice for the JavaScript code in this tag.  Copyright (C) 2012-2013 Free Software Foundation, Inc.  The JavaScript code in this ta">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-02-07T13:58:27.765Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Konnyaku Sys_Con">
-<meta name="twitter:description" content="note          /* @licstart  The following is the entire license notice for the JavaScript code in this tag.  Copyright (C) 2012-2013 Free Software Foundation, Inc.  The JavaScript code in this tag">
+<meta name="twitter:description" content="note          /* @licstart  The following is the entire license notice for the JavaScript code in this tag.  Copyright (C) 2012-2013 Free Software Foundation, Inc.  The JavaScript code in this ta">
 
 
 
@@ -324,7 +324,7 @@
       <div class="post-body">
         
         
-          <?xml version="1.0" encoding="utf-8"?>
+          <script src="/assets/js/APlayer.min.js"> </script><?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
@@ -1252,6 +1252,113 @@ for the JavaScript code in this tag.
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz", "vtoBHheCDpkt7IrhpscujdHp");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1281,6 +1388,87 @@ for the JavaScript code in this tag.
   <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>
 <script type="text/javascript" src="/js/src/custom.js"></script>
 
+  
+  	 <!-- custom analytics part create by xiamo -->
+<script src ="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>		
+<script>AV.initialize("GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz", "vtoBHheCDpkt7IrhpscujdHp");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+	});
+}
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
   
 </body>
 </html>

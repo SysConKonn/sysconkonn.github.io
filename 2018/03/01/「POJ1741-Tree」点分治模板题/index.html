@@ -379,6 +379,17 @@
 
           
           
+             <span id="/2018/03/01/「POJ1741-Tree」点分治模板题/" class="leancloud_visitors" data-flag-title="「POJ1741 Tree」树上点分治模板题">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
 
           
 
@@ -420,7 +431,7 @@
       
 
       
-        <h1 id="点分治基本想法"><a href="#点分治基本想法" class="headerlink" title="点分治基本想法"></a>点分治基本想法</h1><p>点分治，就是按照点将某个问题分而治之。简单的来说，就是讲一个问题大事化小，小事化了。将数据规模较大的问题划分成一个个均等的子问题来解决。<br>线性结构的点分治，经常是将当前考虑的区间分成两份，显然此时在中间会有一条分界线，但是我们<strong>如果想只是分别的处理左右两个区间的答案得到当前区间的答案显然是不行的</strong>。因为这样会漏掉跨过分界线的区间的答案。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="点分治基本想法"><a href="#点分治基本想法" class="headerlink" title="点分治基本想法"></a>点分治基本想法</h1><p>点分治，就是按照点将某个问题分而治之。简单的来说，就是讲一个问题大事化小，小事化了。将数据规模较大的问题划分成一个个均等的子问题来解决。<br>线性结构的点分治，经常是将当前考虑的区间分成两份，显然此时在中间会有一条分界线，但是我们<strong>如果想只是分别的处理左右两个区间的答案得到当前区间的答案显然是不行的</strong>。因为这样会漏掉跨过分界线的区间的答案。</p>
 <a id="more"></a>
 <p>所以我们<strong>先将跨过分界线但是在当前区间内的答案计算出来加入总答案。然后再分别处理两边区间的答案</strong>。这样才能做到<strong>不重复，不遗漏</strong>的计算答案。</p>
 <h1 id="POJ1741题意"><a href="#POJ1741题意" class="headerlink" title="POJ1741题意"></a>POJ1741题意</h1><p>给出一颗大小为N的无根树，求出树上路径长度不大于k的路径条数。</p>
@@ -1197,6 +1208,113 @@
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz", "vtoBHheCDpkt7IrhpscujdHp");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
 <script>
 (function(){
     var bp = document.createElement('script');
@@ -1226,6 +1344,87 @@
   <script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>
 <script type="text/javascript" src="/js/src/custom.js"></script>
 
+  
+  	 <!-- custom analytics part create by xiamo -->
+<script src ="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>		
+<script>AV.initialize("GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz", "vtoBHheCDpkt7IrhpscujdHp");</script>
+<script>
+function showTime(Counter) {
+	var query = new AV.Query(Counter);
+	$(".leancloud_visitors").each(function() {
+		var url = $(this).attr("id").trim();
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length == 0) {
+					var content = $(document.getElementById(url)).text() + ': 0';
+					$(document.getElementById(url)).text(content);
+					return;
+				}
+				for (var i = 0; i < results.length; i++) {
+					var object = results[i];
+					var content = $(document.getElementById(url)).text() + ': ' + object.get('time');
+					$(document.getElementById(url)).text(content);
+				}
+			},
+			error: function(object, error) {
+				console.log("Error: " + error.code + " " + error.message);
+			}
+		});
+	});
+}
+function addCount(Counter) {
+	var Counter = AV.Object.extend("Counter");
+	url = $(".leancloud_visitors").attr('id').trim();
+	title = $(".leancloud_visitors").attr('data-flag-title').trim();
+	var query = new AV.Query(Counter);
+	query.equalTo("url", url);
+	query.find({
+		success: function(results) {
+			if (results.length > 0) {
+				var counter = results[0];
+				counter.fetchWhenSave(true);
+				counter.increment("time");
+				counter.save(null, {
+					success: function(counter) {
+						var content = $(document.getElementById(url)).text() + ': ' + counter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(counter, error) {
+						console.log('Failed to save Visitor num, with error message: ' + error.message);
+					}
+				});
+			} else {
+				var newcounter = new Counter();
+				newcounter.set("title", title);
+				newcounter.set("url", url);
+				newcounter.set("time", 1);
+				newcounter.save(null, {
+					success: function(newcounter) {
+					    console.log("newcounter.get('time')="+newcounter.get('time'));
+						var content = $(document.getElementById(url)).text() + ': ' + newcounter.get('time');
+						$(document.getElementById(url)).text(content);
+					},
+					error: function(newcounter, error) {
+						console.log('Failed to create');
+					}
+				});
+			}
+		},
+		error: function(error) {
+			console.log('Error:' + error.code + " " + error.message);
+		}
+	});
+}
+$(function() {
+	var Counter = AV.Object.extend("Counter");
+	if ($('.leancloud_visitors').length == 1) {
+		addCount(Counter);
+	} else if ($('.post-title-link').length > 1) {
+		showTime(Counter);
+	}
+});
+</script>
   
 </body>
 </html>
