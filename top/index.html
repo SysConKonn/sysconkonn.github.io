@@ -90,13 +90,17 @@
 
 
 
+<meta name="description" content="AV.initialize(&quot;GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz&quot;, &quot;vtoBHheCDpkt7IrhpscujdHp&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.d">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Konnyaku Sys_Con">
-<meta property="og:url" content="http://yoursite.com/categories/模板/字符串/index.html">
+<meta property="og:title" content="热门">
+<meta property="og:url" content="http://yoursite.com/top/index.html">
 <meta property="og:site_name" content="Konnyaku Sys_Con">
+<meta property="og:description" content="AV.initialize(&quot;GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz&quot;, &quot;vtoBHheCDpkt7IrhpscujdHp&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.d">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-05T07:47:22.550Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Konnyaku Sys_Con">
+<meta name="twitter:title" content="热门">
+<meta name="twitter:description" content="AV.initialize(&quot;GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz&quot;, &quot;vtoBHheCDpkt7IrhpscujdHp&quot;);    var time=0   var title=&quot;&quot;   var url=&quot;&quot;   var query = new AV.Query(&apos;Counter&apos;);   query.notEqualTo(&apos;id&apos;,0);   query.d">
 
 
 
@@ -126,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/模板/字符串/"/>
+  <link rel="canonical" href="http://yoursite.com/top/"/>
 
 
 
 
 
-  <title>分类: 字符串 | Konnyaku Sys_Con</title>
+  <title>热门 | Konnyaku Sys_Con</title>
   
 
 
@@ -151,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -301,55 +305,59 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>字符串<small>分类</small>
-        </h1>
-      </div>
+	<h1 class="post-title" itemprop="name headline">热门</h1>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-            <a class="post-title-link" href="/2017/12/29/浅谈KMP算法/" itemprop="url">
-              
-                <span itemprop="name">浅谈KMP算法</span>
-              
-            </a>
+          <p><div id="top"></div></p>
+<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+<script>AV.initialize("GQGETlsDQg6VFzFEamFMnyFi-gzGzoHsz", "vtoBHheCDpkt7IrhpscujdHp");</script>
+<script type="text/javascript">
+  var time=0
+  var title=""
+  var url=""
+  var query = new AV.Query('Counter');
+  query.notEqualTo('id',0);
+  query.descending('time');
+  query.limit(1000);
+  query.find().then(function (todo) {
+    for (var i=0;i<1000;i++){
+      var result=todo[i].attributes;
+      time=result.time;
+      title=result.title;
+      url=result.url;
+      var content="<a href='"+"https://sysconkonn.github.io"+url+"'>"+title+"</a>"+"<br />"+"<font color='#555'>"+"阅读次数："+time+"</font>"+"<br /><br />";
+      document.getElementById("top").innerHTML+=content
+    }
+  }, function (error) {
+    console.log("error");
+  });
+</script>
         
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-29T19:47:59+08:00"
-              content="2017-12-29" >
-          12-29
-        </time>
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
-
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -357,6 +365,12 @@
 
 
           
+  
+    <div class="comments" id="comments">
+      <div id="hypercomments_widget"></div>
+    </div>
+  
+
 
         </div>
         
@@ -630,6 +644,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -653,6 +671,8 @@
 
 		_hcwp.push({widget:"Bloggerstream", widget_id: 102098, selector:".hc-comment-count", label: "{\%COUNT%\}" });
 
+		
+		_hcwp.push({widget:"Stream", widget_id: 102098, xid: "top/index.html"});
 		
 
 		(function() {
@@ -1039,26 +1059,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
