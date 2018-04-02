@@ -1831,7 +1831,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c399e4;
+  background: #d48805;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3000,9 +3000,11 @@ pre .javascript .function {
   }
 }
 body {
-  background-image: url("../images/background.jpg");
-  background-position: left top;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-image: url("http://miao.su/images/2018/03/24/YourName6dcb05.jpg");
   background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main-inner {
+  opacity: 0.93;
 }

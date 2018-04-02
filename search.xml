@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[atcoder_arc92_C - 2D Plane 2N Points]]></title>
+    <url>%2F2018%2F03%2F18%2Fatcoder-arc92-C-2D-Plane-2N-Points%2F</url>
+    <content type="text"><![CDATA[题面Problem StatementOn a two-dimensional plane, there are N red points and N blue points. The coordinates of the i-th red point are $(a_i,b_i)$, and the coordinates of the i-th blue point are $(c_i,d_i)$.A red point and a blue point can form a friendly pair when, the $x$-coordinate of the red point is smaller than that of the blue point, and the $y$-coordinate of the red point is also smaller than that of the blue point. At most how many friendly pairs can you form? Note that a point cannot belong to multiple pairs. ConstraintsAll input values are integers. $1≤N≤100$ $0≤a_i,b_i,c_i,d_i&lt;2N$ $a_1,a_2, \cdots ,a_N, c_1,c_2,\cdots,c_N$ are all different. $b_1,b_2,\cdots ,b_N,d_1,d_2,\cdots,d_N$ are all different. InputInput is given from Standard Input in the following format: N $a_1 b_1$ $a_2 b_2$ : $a_N b_N$ $c_1 d_1$ $c_2 d_2$ : $c_N d_N$ OutputPrint the maximum number of friendly pairs. Sample Input 1123456732 03 11 34 20 45 5 Sample Output 112 For example, you can pair (2,0) and (4,2), then (3,1) and (5,5). 题意解释给出N个红点N个蓝点，一个红点能与一个蓝点配对的条件是这个红点的x,y坐标都小于蓝点。 并且并且只能两两配对并且不能有重复的点。 问最多能够有多少点对满足要求。 题解其实就是将每个红点和与其满足条件的蓝点连边然后跑一遍二分图匹配就OK了。 程序1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;#include &lt;cstring&gt;#define MAX_N 210using namespace std;int N;int coox[MAX_N], cooy[MAX_N];bool f[MAX_N][MAX_N], vis[MAX_N];int match[MAX_N];int res;bool dfs (int);int main () &#123; scanf("%d", &amp;N); for (int i = 1;i &lt;= 2 * N; ++i) scanf("%d%d", coox + i, cooy + i); for (int i = 1;i &lt;= N; ++i) for (int j = N + 1;j &lt;= 2 * N; ++j) if (coox[i] &lt; coox[j] &amp;&amp; cooy[i] &lt; cooy[j]) &#123; f[i][j - N] = true; &#125; for (int i = 1;i &lt;= N; ++i) &#123; memset(vis, false, sizeof(vis)); if (dfs(i)) res++; &#125; printf("%d\n", res); return 0;&#125;bool dfs (int x) &#123; for (int i = 1;i &lt;= N; ++i) &#123; if (!f[x][i] || vis[i]) continue; vis[i] = true; if (!match[i] || dfs(match[i])) &#123; match[i] = x; return true; &#125; &#125; return false;&#125;]]></content>
+      <tags>
+        <tag>atcoder</tag>
+        <tag>二分图匹配</tag>
+        <tag>匈牙利算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[二分图匹配-匈牙利算法入门]]></title>
+    <url>%2F2018%2F03%2F18%2F%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D-%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%2F</url>
+    <content type="text"><![CDATA[这里有一道板子题 一些定义首先是一些定义: 二分图：简单来说，如果图中点可以被分为两组，并且使得所有边都跨越组的边界，则这就是一个二分图。准确地说：把一个图的顶点划分为两个不相交集 U 和V ，使得每一条边都分别连接U、V中的顶点。如果存在这样的划分，则此图为一个二分图。二分图的一个等价定义是：不含有「含奇数条边的环」的图。图 1 是一个二分图。为了清晰，我们以后都把它画成图 2 的形式。匹配：在图论中，一个「匹配」（matching）是一个边的集合，其中任意两条边都没有公共顶点。例如，图 3、图 4 中红色的边就是图 2 的匹配。 我们定义匹配点、匹配边、未匹配点、非匹配边，它们的含义非常显然。例如图 3 中 1、4、5、7 为匹配点，其他顶点为未匹配点；1-5、4-7为匹配边，其他边为非匹配边。 最大匹配：一个图所有匹配中，所含匹配边数最多的匹配，称为这个图的最大匹配。图 4 是一个最大匹配，它包含 4 条匹配边。 完美匹配：如果一个图的某个匹配中，所有的顶点都是匹配点，那么它就是一个完美匹配。图 4 是一个完美匹配。显然，完美匹配一定是最大匹配（完美匹配的任何一个点都已经匹配，添加一条新的匹配边一定会与已有的匹配边冲突）。但并非每个图都存在完美匹配。 举例来说：如下图所示，如果在某一对男孩和女孩之间存在相连的边，就意味着他们彼此可以为同桌。是否可能让所有男孩和女孩两两配对，使得一个人坐(就是没有同桌)的人尽量少呢？图论中，这就是完美匹配问题。如果换一个说法：最多有多少互相可以为同桌的男孩/女孩可以配对儿？这就是最大匹配问题。 匈牙利算法基本概念讲完了。求解最大匹配问题的一个算法是匈牙利算法，下面讲的概念都为这个算法服务。 交替路：从一个未匹配点出发，依次经过非匹配边、匹配边、非匹配边…形成的路径叫交替路。 增广路：从一个未匹配点出发，走交替路，如果途径另一个未匹配点（出发的点不算），则这条交替路称为增广路（agumenting path）。例如，图 5 中的一条增广路如图 6 所示（图中的匹配点均用红色标出）： 增广路有一个重要特点：非匹配边比匹配边多一条。因此，研究增广路的意义是改进匹配。只要把增广路中的匹配边和非匹配边的身份交换即可。由于中间的匹配节点不存在其他相连的匹配边，所以这样做不会破坏匹配的性质。交换后，图中的匹配边数目比原来多了 1 条。 我们可以通过不停地找增广路来增加匹配中的匹配边和匹配点。找不到增广路时，达到最大匹配（这是增广路定理）。匈牙利算法正是这么做的。在给出匈牙利算法 DFS 和 BFS 版本的代码之前，先讲一下匈牙利树。 匈牙利树其实匈牙利树感觉没有什么很大用处的样子？ 匈牙利树一般由 BFS 构造（类似于 BFS 树）。从一个未匹配点出发运行 BFS（唯一的限制是，必须走交替路），直到不能再扩展为止。例如，由图 7，可以得到如图 8 的一棵 BFS 树： 这棵树存在一个叶子节点为非匹配点（7 号），但是匈牙利树要求所有叶子节点均为匹配点，因此这不是一棵匈牙利树。如果原图中根本不含 7 号节点，那么从 2 号节点出发就会得到一棵匈牙利树。这种情况如图 9 所示（顺便说一句，图 8 中根节点 2 到非匹配叶子节点 7 显然是一条增广路，沿这条增广路扩充后将得到一个完美匹配）。 以上来自dalao”renfei”的博客然后自己稍微做了一点改动。 顺便说一句：如果交到文章开头的网站评测后A了这道题最好还是和底下的程序对比一下看看实现方式是不是差不多(我本来match数组设的bool类型并且dfs手残打错了都A了) 代码1234567891011121314151617181920212223242526272829303132333435363738394041#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;#include &lt;cstring&gt;#define MAX_N 1010using namespace std;int N, M, e;bool f[MAX_N][MAX_N], vis[MAX_N];int match[MAX_N];int res;bool dfs(int);int main () &#123; int u, v; scanf("%d%d%d", &amp;N, &amp;M, &amp;e); for (int i = 1;i &lt;= e; ++i) &#123; scanf("%d%d", &amp;u, &amp;v); if (u &lt;= N &amp;&amp; v &lt;= M) f[u][v] = true; &#125; for (int i = 1;i &lt;= N; ++i) &#123; memset(vis, false, sizeof(vis)); if (dfs(i)) res++; &#125; printf("%d\n", res); return 0;&#125;bool dfs (int x) &#123; for (int i = 1;i &lt;= M; ++i) &#123; if (!f[x][i] || vis[i]) continue; vis[i] = true; if (!match[i] || dfs(match[i])) &#123; match[i] = x; return true; &#125; &#125; return false;&#125;]]></content>
+      <tags>
+        <tag>二分图匹配</tag>
+        <tag>匈牙利算法</tag>
+        <tag>图论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[prufer编码入门--[BZOJ1005]明明的烦恼]]></title>
+    <url>%2F2018%2F03%2F16%2Fprufer%E7%BC%96%E7%A0%81%E5%85%A5%E9%97%A8-BZOJ1005-%E6%98%8E%E6%98%8E%E7%9A%84%E7%83%A6%E6%81%BC%2F</url>
+    <content type="text"><![CDATA[原题戳我 感觉这题做法还挺妙的。使用prufer编码来完成这道和树上统计有关的题。 对理解帮助很大的一篇博客 前排提示：这题需要prufer编码 以下转自上面那一篇博客： prufer编码树的prufer编码的性质： (1)树的prufer编码的实现 不断删除树中度数为1的最小序号的点，并输出与其相连的节点的序号，直至树中只有两个节点 (2)通过观察我们可以发现 任意一棵n节点的树都可唯一的用长度为n-2的prufer编码表示 度数为m的节点的序号在prufer编码中出现的次数为m-1 (3)怎样将prufer编码还原为一棵树？？ 从prufer编码的最前端开始扫描节点，设该节点序号为 u , 寻找不在prufer编码的最小序号且没有被标记的节点 v ， 连接u,v,并标记v，将u从prufer编码中删除。扫描下一节点。 这题怎么用prufer编码该题需要将树转化为prufer编码： n为树的节点数，d[]为各节点的度数，m为无限制度数的节点数。 然后设 $tot=\sum_{i=1}^{n} d[i]-1$ 所以要求在n-2大小的数组中插入tot个序号，共有$C_{n-2}^{tot}$种插法； 在tot个号排列中，插第一个节点的方法有$C_{tot}^{d_1-1}$种插法； 插第二个节点的方法有$C_{tot-(d_1-1)}^{d_2-1}$种插法； ……… 另外还有m各节点无度数限制，所以它们可任意排列在剩余的$n-2-tot$的空间中，排列方法总数为$m^{n-2-tot}$； 根据乘法原理： $$=\frac{(n-2)!\times m^{n-2-tot}}{(n-2-tot)!\times (d_1-1)!\times (d_2-1)!\times \cdots \times (d_n-1)!}$$ (这里的$d_i$能当作答案当且仅当$d_i$ &gt; 0) 然后就要高精度了…..但高精度除法太麻烦了，显而易见的排列组合一定是整数，所以可以进行质因数分解，再做一下相加减。 关于$n!$质因数分解有两种方法，第一种暴力分解，这里也讲第二种。 若p为质数，则n!可分解为 一个数$\times p^x$，其中$x=\lfloor \frac{n}{p} \rfloor + \lfloor \frac{n}{p^2} \rfloor + \cdots + \lfloor \frac{n}{p^t} \rfloor$且$p^t&lt;n$ 所以 $n!=p_1^{x_1}\times p_2^{x_2}\times p_3^{x_3} \times \cdots \times p_m^{x_m}$ UPD这里还讲一点和prufer编码有关的东西。 任意一个长度为$n-2$且序列中元素为$1～n$的序列都可以唯一的表示成一棵无根树。 n个节点，度分别为$d_1, d_2, d_3 \cdots d_n$的无根树共有$$\frac{(n-2)!}{(d_1-1)!\times (d_2-1)!\times (d_3-1)! \times\cdots \times (d_n-1)!}$$个 由两个唯一对应的性质，我们可以推出Cayley公式。一个完全图$K_n$有$n^{n-2}$棵生成树。 证明方法：生成树的个数就是元素为$1～n$的集合中取n-2个数排列的总方案数。 由于长度为$n-2$的序列每一个位置都可以放$1～n$中的任意一个数，所以总方案数显然是$n-2$个$n$相乘，即$n^{n-2}$ 我的程序那个。。。我好像用的暴力分解。。。还有。。。最近把emacs换成了四格缩进。贴上代码可能感觉稍微好一点，不会像之前一样窄了。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;#include &lt;cstring&gt;#define MAX_N 1005using namespace std;struct bignum &#123; int num[MAX_N * 100]; int len;&#125;res;int n, tot, m, cnt;int d[MAX_N], pri[MAX_N], num[MAX_N];void solve (int, int);void getprime ();inline bool jud (int);void mul (int);int main () &#123; getprime (); scanf("%d", &amp;n); if (n == 1) &#123; scanf("%d", &amp;d[1]); if (!d[1]) printf("1\n"); else printf("0\n"); return 0; &#125; for (int i = 1;i &lt;= n; ++i) &#123; scanf("%d", &amp;d[i]); if (!d[i]) &#123;printf("0\n");return 0;&#125; if (d[i] == -1) m++; else &#123;d[i]--; tot += d[i];&#125; &#125; if (tot &gt; n - 2) &#123;printf("0\n"); return 0;&#125; solve(n - 2, 1); solve(n - 2 - tot, -1); for (int i = 1;i &lt;= n; ++i) if (d[i] &gt; 0) solve (d[i], -1); res.num[1] = res.len = 1; for (int i = 1;i &lt;= cnt; ++i) while (num[i]--) mul(pri[i]); for (int i = 1;i &lt;= n - 2 - tot; ++i) mul(m); for (int i = res.len;i &gt; 0; --i) printf("%d", res.num[i]); printf("\n"); return 0;&#125;void mul (int x) &#123; for (int i = 1;i &lt;= res.len; ++i) res.num[i] *= x; for (int i = 1;i &lt;= res.len; ++i) res.num[i + 1] += res.num[i] / 10, res.num[i] %= 10; while (res.num[res.len + 1] &gt; 0) res.len++, res.num[res.len + 1] += res.num[res.len] / 10, res.num[res.len] %= 10;&#125;inline bool jud (int x) &#123; if (x == 2) return true; int sq = sqrt(x) + 1; for (int i = 2;i &lt;= sq; ++i) if (x % i == 0) return false; return true;&#125;void getprime () &#123; for (int i = 2;i &lt;= MAX_N; ++i) &#123; if (jud (i)) pri[++cnt] = i; &#125;&#125;void solve (int a, int f) &#123; for (int k = 1;k &lt;= a; ++k) &#123; int x = k; for (int i = 1;i &lt;= cnt; ++i) &#123; if (x &lt;= 1) break; while (x % pri[i] == 0) &#123;num[i] += f; x /= pri[i];&#125; &#125; &#125;&#125;]]></content>
+      <tags>
+        <tag>树</tag>
+        <tag>prufer编码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[组合数学八题 --ByCZZ]]></title>
+    <url>%2F2018%2F03%2F15%2F%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E5%85%AB%E9%A2%98ByCZZ%2F</url>
+    <content type="text"><![CDATA[组合数学八题AUTHOR:CZZdalao A. 第一题基本就是来送分的，就相当于每个球可以放在随便一个盒子里，就是$m^n$就行 B. 这道题如果做出来了D题，就会非常简单，就是不同到相同的转化,也就是$dp[n][m]*m!$就可以求出答案了。 C.实际上我也不知道我是怎么水过的，这道题目就是D题中的$\sum_{k=1}^{m} dp[n][k]$啊！！，我暴力相加但是过了。what？ D. 首先看到这道题，第一反应应该是dp，设$dp[i][j]$表示在(前)j个盒子里放i个球的方案数，我们就可以把第j个盒子分成空和非空两种情况来考虑，这样就可以求出状态转移方程:$dp[i][j]=dp[i-1][j-1]+dp[i-1][j]*j$ 然后就会发现数据范围不对。我们可以很快发现这个数列实际上就是一个裸的第二类斯特林数，我们用容斥原理就可以求出它的单点求法: $dp[n][m]=\frac{1}{m!}\times $ $ \sum{k=0}^{m} (-1)^k$$\times C{m}^{k}\times (m-k)^n $ ，这样就可以过掉了 E.与F题相似我们可以先把m个盒子里放一个球，然后在放剩下的n个球，于是按照F题的思路就可以很快算出:$C_{n-1}^{m+n-1}$ F. 我们可以转化一下思路，也就是在n-1个空中选取m-1个将这n个球分成m块，于是式子就出来啦：$C_{n-1}^{m-1}$ G. 看到数据范围就知道是一个dp，于是我们设$dp[i][j]$表示在(前)j个盒子里放i个球的方案数，那么我们按照空和非空两种情况可以推出状态转移方程:$dp[i][j]=dp[i][j-1]+dp[i-j][j]$ H. 看到题目和数据范围就知道跟G题有关系，我们可以考虑先把每一个盒子放一个球，然后剩下的$n-m$个球不就可以按照G题的方法进行递推了吗？这样就可以做出来了。 题目: (wei)评论: SysCon:orz%%%CZZdalao]]></content>
+      <tags>
+        <tag>数学</tag>
+        <tag>他人文章</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[初涉git]]></title>
+    <url>%2F2018%2F03%2F15%2F%E5%88%9D%E6%B6%89git%2F</url>
+    <content type="text"><![CDATA[git是个好东西，它可以帮助你联系你的远程仓库并且干很多事。我认为，它要比本地的文件操作好很多。 在这里就随便讲讲一些比较简单的操作，有很多操作是git会提示你去做的。 一篇好文章 需要准备的事下载git… archlinux上使用sudo pacman -S git就可以。 其他版本linux一般也可以直接使用自己的包管理器直接安装git. 首先我们需要确定我们要干什么，git是需要一个本地和一个远程仓库的。 初始化本地仓库在本地文件夹上新建一个仓库。如mkdir gitlearning。 在终端中进入这个仓库cd gitlearning然后执行命令git init它就会提示你创建了一个新的空仓库。(实际上如果文件夹本来不空也可以直接创建仓库) 此时这个本地仓库已经初始化完成了。 你在这个仓库中的文件只需要一些命令就可以传到远程仓库。 初始化远程仓库为了方便，我们需要在远程仓库加入当前电脑的ssh_key。 使用命令ssh-keygen -t rsa -C &quot;YourEmail@example.com&quot; 此时你的主目录(~)应该已经有了一个隐藏文件夹.ssh，我们打开.ssh文件夹然后将id_rsa.pub文件中的内容copy下来，在github上的账户settings中AddSSHkey，将copy的内容放进去。 然后就OK了。 如何推送在本地仓库创建了一些文件后如何推送上去呢？ 首先保证仓库已经git init过。 接着与远程仓库对接一下 git remote add origin &#39;YourGitProjectURL&#39; git push -u origin master 然后使用git add ...命令，如果要将当前整个文件夹推送上去，就将’…’替换成’.’就行了，否则将’…’替换成你要推送的东西。 然后git commit -m &quot;...&quot;命令。 最后git push或git push origin master就行了。 如果其中出了错误，一般git会告诉你错在哪里以及如何解决。]]></content>
+      <tags>
+        <tag>杂谈</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[「POJ1741 Tree」树上点分治模板题]]></title>
     <url>%2F2018%2F03%2F01%2F%E3%80%8CPOJ1741-Tree%E3%80%8D%E7%82%B9%E5%88%86%E6%B2%BB%E6%A8%A1%E6%9D%BF%E9%A2%98%2F</url>
     <content type="text"><![CDATA[点分治基本想法点分治，就是按照点将某个问题分而治之。简单的来说，就是讲一个问题大事化小，小事化了。将数据规模较大的问题划分成一个个均等的子问题来解决。线性结构的点分治，经常是将当前考虑的区间分成两份，显然此时在中间会有一条分界线，但是我们如果想只是分别的处理左右两个区间的答案得到当前区间的答案显然是不行的。因为这样会漏掉跨过分界线的区间的答案。 所以我们先将跨过分界线但是在当前区间内的答案计算出来加入总答案。然后再分别处理两边区间的答案。这样才能做到不重复，不遗漏的计算答案。 POJ1741题意给出一颗大小为N的无根树，求出树上路径长度不大于k的路径条数。 POJ1741题解点分治的基本想法明确之后。可以来思考poj1741这一道裸题了。因为这是树，所以我们不能像处理区间问题一样单纯的只是每次找中点，此时我们应该思考，为什么线性结构上点分治要找中点？因为我们点分治的目的是将大数据划分成几乎均等大小的小数据来处理，那么在树上怎么样才能使接下来要处理的数据几乎均等呢？此时问题变成了求出当前树上存在的删掉后形成的子树规模均等的点了。这个点有一个名字，就是树的重心。很幸运的，可以使用树上DP来求出这一个点，求法很简单，在这里不用多说(https://www.baidu.com)。 因为要计算的是长度不小于k的路径条数，所以我们找到当前点的未搜索过的子树上(因为搜索过再搜就会搜回去，没这个必要，并且会死循环) 每个点到它的距离。然后按照距离排序，可以很轻松的求出合法方案数。 那么问题来了，如果在同一棵子树内出现了两个合法的点使得到顶点的距离之和不大于k呢？那么这个点对会在当前情况和处理那棵子树是都被算一遍！这违反了不重复不遗漏的规则！ 处理方法其实也很容易，只要将当前重心的每一棵子树内的合法答案算出来即可（注意，这里的合法答案是在加上到重心的距离后仍然满足距离不大于k的） 所以程序就很清晰了。(一开始TLE了结果还SB的加了个读入优化) 程序123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106#include &lt;cstdio&gt;#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;#include &lt;cstring&gt;#define MAX_N 20005#define INF 2147483647using namespace std;int N, k;int head[MAX_N], nxt[2 * MAX_N + 1], to[2 * MAX_N + 1], dis[2 * MAX_N + 1], tmp;int root;int son[MAX_N], sz[MAX_N], sum;bool vis[MAX_N];int res;int deep[MAX_N], d[MAX_N];inline int read () &#123; int x = 0; char c;int w = 0; while (!isdigit(c)) w |= c == '-', c = getchar(); while (isdigit(c)) x *= 10, x += c - '0', c = getchar(); return w == 1 ? -x : x;&#125;void add_edge (int u, int v, int w) &#123; nxt[++tmp] = head[u]; head[u] = tmp; to[tmp] = v; dis[tmp] = w;&#125;void find_root(int x, int fa) &#123; son[x] = 1, sz[x] = 0; for (int i = head[x]; i; i = nxt[i]) &#123; int v = to[i]; if (v == fa || vis[v]) continue; find_root(v, x); son[x] += son[v]; sz[x] = max(sz[x], son[v]); &#125; sz[x] = max(sz[x], sum - son[x]); if (sz[x] &lt; sz[root]) root = x;&#125;void init () &#123; memset(head, 0, sizeof(head)); memset(nxt, 0, sizeof(nxt)); memset(to, 0, sizeof(to)); memset(dis, 0, sizeof(dis)); memset(vis, 0, sizeof(vis)); tmp = res = 0;&#125;void get_deep (int x, int fa) &#123; deep[++deep[0]] = d[x]; for (int i = head[x]; i; i = nxt[i]) &#123; int v = to[i], dist = dis[i]; if (v == fa || vis[v]) continue; d[v] = d[x] + dist; get_deep(v, x); &#125;&#125;int calc (int x, int v) &#123; d[x] = v, deep[0] = 0; get_deep(x, 0); sort(deep + 1, deep + deep[0] + 1); int l = 1, r = deep[0], sum = 0; while (l &lt; r) &#123; if(deep[l] + deep[r] &lt;= k) &#123;sum += r - l; l++;&#125; else r--; &#125; return sum;&#125;void solve (int x) &#123; res += calc(x, 0); vis[x] = true; for (int i = head[x]; i; i = nxt[i]) &#123; int v = to[i], dist = dis[i]; if (vis[v]) continue; res -= calc(v, dist); root = 0, sum = son[v]; find_root(v, 0); solve(root); &#125;&#125;int main () &#123; while (((N = read()) != 0) &amp;&amp; ((k = read()) != 0)) &#123; init(); int u, v, w; for (int i = 1;i &lt; N; ++i) &#123; u = read(), v = read(), w = read(); add_edge (u, v, w); add_edge (v, u, w); &#125; root = 0, sz[root] = INF, sum = N; find_root(1, 0); solve(root); printf("%d\n", res); &#125; return 0;&#125;]]></content>
@@ -101,9 +148,9 @@
         <category>模板</category>
       </categories>
       <tags>
+        <tag>线段树</tag>
         <tag>模板</tag>
         <tag>POJ</tag>
-        <tag>线段树</tag>
       </tags>
   </entry>
   <entry>
@@ -115,9 +162,9 @@
         <category>模板</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>线段树</tag>
         <tag>HDU</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -129,9 +176,9 @@
         <category>模板</category>
       </categories>
       <tags>
+        <tag>模板</tag>
         <tag>网络流</tag>
         <tag>洛谷</tag>
-        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -142,8 +189,8 @@
         <category>数学</category>
       </categories>
       <tags>
-        <tag>高斯消元</tag>
         <tag>POJ</tag>
+        <tag>高斯消元</tag>
       </tags>
   </entry>
   <entry>
@@ -155,8 +202,8 @@
         <category>模板</category>
       </categories>
       <tags>
-        <tag>洛谷</tag>
         <tag>模板</tag>
+        <tag>洛谷</tag>
         <tag>高斯消元</tag>
       </tags>
   </entry>
